@@ -1,13 +1,13 @@
 const fs = require('fs/promises');
 
 class Contenedor {
-    constructor(rute) {
-        this.rute = rute
+    constructor(route) {
+        this.route = route
     }
 
     async getAll() {
         try {
-            const objs = await fs.readFile(this.rute, 'utf-8');
+            const objs = await fs.readFile(this.route, 'utf-8');
             return JSON.parse(objs);
         } catch (error) {
             return "No se pudo obtener la lista de productos";
@@ -27,7 +27,7 @@ class Contenedor {
             const newObj = {id: newId, ...obj};
             objs.push(newObj);
 
-            await fs.writeFile(this.rute, JSON.stringify(objs, null, 2));
+            await fs.writeFile(this.route, JSON.stringify(objs, null, 2));
             return newId;
 
         } catch (error) {
@@ -58,7 +58,7 @@ class Contenedor {
                 return "No se encontro el producto";
             } else {
                 objs.splice(indexObj, 1);
-                await fs.writeFile(this.rute, JSON.stringify(objs, null, 2));
+                await fs.writeFile(this.route, JSON.stringify(objs, null, 2));
             }
         } catch (error) {
             return "No se pudo eliminar el producto"
@@ -68,7 +68,7 @@ class Contenedor {
 
     async deleteAll() {
         try {
-            await fs.writeFile(this.rute, JSON.stringify([], null, 2));
+            await fs.writeFile(this.route, JSON.stringify([], null, 2));
         } catch (error) {
             console.log(error);
         }
