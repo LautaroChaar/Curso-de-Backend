@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Campera",
+    "id": 1,
+    "price": 10000
+  },
+  {
+    "title": "Gorro de lana",
+    "id": 2,
+    "price": 5000
+  },
+  {
+    "title": "Zapatillas",
+    "id": 3,
+    "price": 7000
+  }
+]
