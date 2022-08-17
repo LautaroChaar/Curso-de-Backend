@@ -62,8 +62,7 @@ class Contenedor {
             }
         } catch (error) {
             return "No se pudo eliminar el producto"
-        }
-       
+        }  
     }
 
     async deleteAll() {
@@ -85,4 +84,4 @@ async function main() {
     console.log(await products.deleteAll());
 }
 
-main();
+module.exports = Contenedor;
