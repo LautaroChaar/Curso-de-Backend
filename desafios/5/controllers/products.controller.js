@@ -1,4 +1,4 @@
-const DB_PRODUCTS = [];
+const {DB_PRODUCTS} = require('../data/products-data');
 
 const getAll = (req, res) => {
     res.status(200).json(DB_PRODUCTS);
@@ -71,5 +71,6 @@ module.exports = {
     getProduct,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    DB_PRODUCTS
 };

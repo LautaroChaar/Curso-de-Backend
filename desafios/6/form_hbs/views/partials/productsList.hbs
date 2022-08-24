@@ -1,0 +1,27 @@
+<!-- Tabla -->
+<div>
+    <h2 style="color:crimson;" class="text-center">Lista de Productos</h2>
+    {{#if DB_PRODUCTS}}
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <tr style="color: yellow;"> <th>Nombre</th> <th>Precio</th> <th>Imagen</th> </tr>
+                {{#each DB_PRODUCTS}}
+                <tr>
+                    <td>{{this.nombre}}</td>
+                    <td>{{this.precio}}</td>
+                    <td>
+                        <img src="{{this.imagen}}" width="30px" alt="">
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    {{else}}
+        <h3 class="alert alert-warning text-center">No se encontraron productos</h3>
+    {{/if}}
+</div>
+<div>
+    <form action="/" method="GET">
+        <button class="btn btn-success w-100">Volver al Formulario</button>
+    </form>
+</div>
