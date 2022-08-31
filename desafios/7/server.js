@@ -1,8 +1,7 @@
 const express = require('express');
 const { Server: HttpServer } = require('http');
 const { Server: IOServer } = require('socket.io');
-const date = new Date();
-const time = date.toLocaleString()
+const date = new Date().toLocaleString();
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -15,25 +14,22 @@ app.use(express.urlencoded({extended: true}));
 app.set('views', './views');
 app.set('view engine', 'pug');
 
-const { DB_PRODUCTS } = require('../5/data/products-data');
+
+const DB_PRODUCTS  = require('../5/data/products-data');
 
 const DB_MESSAGES = [
-    { author: 'JhonLennon@gmail.com', text: 'All you need is love <3', time },
-    { author: 'UncleBen@hotmail.com', text: 'Great power comes great responsibility!', time},
-    { author: 'MarceloGallardo@gmail.com', text: 'Que la gente crea...', time}
+    { author: 'JhonLennon@gmail.com', text: 'All you need is love <3', date },
+    { author: 'UncleBen@hotmail.com', text: 'Great power comes great responsibility!', date},
+    { author: 'MarceloGallardo@gmail.com', text: 'Que la gente crea...', date}
 ];
 
 
 app.get('/', (req, res) => {
-    res.render('viewForm', {DB_PRODUCTS});
+    res.render('viewMain', {DB_PRODUCTS});
 });
 
 app.get('/products', (req, res) => {
-    res.render('viewProducts', {DB_PRODUCTS})
-});
-
-app.post('/products', (req, res) => {
-    DB_PRODUCTS.push(req.body);
+    res.render('viewProductSocket', {DB_PRODUCTS})
 });
 
 
