@@ -1,0 +1,20 @@
+div(class='jumbotron')
+    h1(style="color:blue;") Agregar Productos
+    br
+    form(action="/products" method="post")
+        div(class="form-group")
+            label(for="nombre")
+                b Nombre
+            input(id="nombre" class="form-control" type="text" name="nombre")     
+        .form-group
+            label(for="precio")
+                b Precio
+            input#apellido.form-control( class="form-control" type="text" name="precio")
+        .form-group
+            label(for="imagen")
+                b Imagen
+            input#imagen.form-control( type="text" name="imagen")
+        button(class="btn btn-success mt-3 mb-5") Agregar
+div
+    form(action="/products" method="GET") 
+        button(class="btn btn-success w-100") Ver Lista de Productos
