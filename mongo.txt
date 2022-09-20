@@ -1,0 +1,431 @@
+------------------CREAMOS LAS COLECCIONES------------------
+
+use ecommerce
+'switched to db ecommerce'
+db
+ecommerce
+db.createCollection("mensajes")
+{ ok: 1 }
+db.createCollection("productos")
+{ ok: 1 }
+show collections
+mensajes
+productos
+
+------------------INSERTAMOS LOS DOCUMENTOS------------------
+
+db.productos.insertMany([
+  {
+    title: "Pantalon jogging",
+    price: 4300,
+    url: "url"
+},
+{
+    title: "Pantalon Jean",
+    price: 5000,
+    url: "url"
+},
+{
+    title: "Lentes de Sol",
+    price: 1200,
+    url: "url"
+},
+{
+    title: "Botas",
+    price: 4300,
+    url: "url"
+},
+{
+    title: "Gorro de Lana",
+    price: 1600,
+    url: "url"
+},
+{
+    title: "Buzo",
+    price: 4000,
+    url: "url"
+},
+{
+    title: "Remera",
+    price: 2100,
+    url: "url"
+},
+{
+    title: "Campera",
+    price: 8000,
+    url: "url"
+},
+{
+    title: "Zapatillas",
+    price: 5500,
+    url: "url"
+},
+{
+    title: "Camisa",
+    price: 6000,
+    url: "url"
+}
+  ])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("632875b803c513b469e0b1f4"),
+     '1': ObjectId("632875b803c513b469e0b1f5"),
+     '2': ObjectId("632875b803c513b469e0b1f6"),
+     '3': ObjectId("632875b803c513b469e0b1f7"),
+     '4': ObjectId("632875b803c513b469e0b1f8"),
+     '5': ObjectId("632875b803c513b469e0b1f9"),
+     '6': ObjectId("632875b803c513b469e0b1fa"),
+     '7': ObjectId("632875b803c513b469e0b1fb"),
+     '8': ObjectId("632875b803c513b469e0b1fc"),
+     '9': ObjectId("632875b803c513b469e0b1fe") } }
+db.mensajes.insertMany([
+  {
+    author: "batman@gmail.com",
+    timestamp: "timestamp",
+    text: "I'm Batman"
+},
+{
+    author: "nike@hotmail.com",
+    timestamp: "timestamp",
+    text: "Just do it"
+},
+{
+    author: "apple@hotmail.com",
+    timestamp: "timestamp",
+    text: "Think different"
+},
+{
+    author: "mcdonalds@gmail.com",
+    timestamp: "timestamp",
+    text: "I'm lovin' it"
+},
+{
+    author: "lays@gmail.com",
+    timestamp: "timestamp",
+    text: "Betcha can´t eat just one!!"
+},
+{
+    author: "cocacola@hotmail.com",
+    timestamp: "timestamp",
+    text: "Open Happiness :)"
+},
+{
+    author: "redbull@hotmail.com",
+    timestamp: "timestamp",
+    text: "Gives you wings"
+},
+{
+    author: "adidas@gmail.com",
+    timestamp: "timestamp",
+    text: "Impossible is nothing"
+},
+{
+    author: "puma@hotmail.com",
+    timestamp: "timestamp",
+    text: "Forever Faster!"
+},
+{
+    author: "windows@hotmail.com",
+    timestamp: "timestamp",
+    text: "Be what's next..."
+}
+  ])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("63287acc03c513b469e0b1ff"),
+     '1': ObjectId("63287acc03c513b469e0b200"),
+     '2': ObjectId("63287acc03c513b469e0b201"),
+     '3': ObjectId("63287acc03c513b469e0b202"),
+     '4': ObjectId("63287acc03c513b469e0b203"),
+     '5': ObjectId("63287acc03c513b469e0b204"),
+     '6': ObjectId("63287acc03c513b469e0b205"),
+     '7': ObjectId("63287acc03c513b469e0b206"),
+     '8': ObjectId("63287acc03c513b469e0b207"),
+     '9': ObjectId("63287acc03c513b469e0b208") } }
+
+------------------LISTAMOS TODOS LOS DOCUMENTOS------------------
+
+db.productos.find().pretty()
+{ _id: ObjectId("632875b803c513b469e0b1f4"),
+  title: 'Pantalon jogging',
+  price: 4300,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f5"),
+  title: 'Pantalon Jean',
+  price: 5000,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f6"),
+  title: 'Lentes de Sol',
+  price: 900,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f7"),
+  title: 'Botas',
+  price: 4300,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f8"),
+  title: 'Gorro de Lana',
+  price: 1600,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f9"),
+  title: 'Buzo',
+  price: 4000,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fa"),
+  title: 'Remera',
+  price: 2100,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fb"),
+  title: 'Campera',
+  price: 4200,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fc"),
+  title: 'Zapatillas',
+  price: 5000,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fe"),
+  title: 'Camisa',
+  price: 4100,
+  url: 'url' }
+db.mensajes.find().pretty()
+{ _id: ObjectId("63287acc03c513b469e0b1ff"),
+  author: 'batman@gmail.com',
+  timestamp: 'timestamp',
+  text: 'I\'m Batman' }
+{ _id: ObjectId("63287acc03c513b469e0b200"),
+  author: 'nike@hotmail.com',
+  timestamp: 'timestamp',
+  text: 'Just do it' }
+{ _id: ObjectId("63287acc03c513b469e0b201"),
+  author: 'apple@hotmail.com',
+  timestamp: 'timestamp',
+  text: 'Think different' }
+{ _id: ObjectId("63287acc03c513b469e0b202"),
+  author: 'mcdonalds@gmail.com',
+  timestamp: 'timestamp',
+  text: 'I\'m lovin\' it' }
+{ _id: ObjectId("63287acc03c513b469e0b203"),
+  author: 'lays@gmail.com',
+  timestamp: 'timestamp',
+  text: 'Betcha can´t eat just one!!' }
+{ _id: ObjectId("63287acc03c513b469e0b204"),
+  author: 'cocacola@hotmail.com',
+  timestamp: 'timestamp',
+  text: 'Open Happiness :)' }
+{ _id: ObjectId("63287acc03c513b469e0b205"),
+  author: 'redbull@hotmail.com',
+  timestamp: 'timestamp',
+  text: 'Gives you wings' }
+{ _id: ObjectId("63287acc03c513b469e0b206"),
+  author: 'adidas@gmail.com',
+  timestamp: 'timestamp',
+  text: 'Impossible is nothing' }
+{ _id: ObjectId("63287acc03c513b469e0b207"),
+  author: 'puma@hotmail.com',
+  timestamp: 'timestamp',
+  text: 'Forever Faster!' }
+{ _id: ObjectId("63287acc03c513b469e0b208"),
+  author: 'windows@hotmail.com',
+  timestamp: 'timestamp',
+  text: 'Be what\'s next...' }
+
+------------------MOSTRAMOS LA CANTIDAD DE DOCUMENTOS------------------
+
+db.productos.estimatedDocumentCount()
+10
+db.mensajes.estimatedDocumentCount()
+10
+
+------------------AGREGAMOS UN PRODUCTO------------------
+
+db.productos.insertOne({title: "Ojotas", price: 1250, url: "url"})
+{ acknowledged: true,
+  insertedId: ObjectId("63287e0d03c513b469e0b209") }
+
+------------------LISTAMOS LOS PRODUCTOS CON PRECIO < A 1000------------------
+
+db.productos.find({price:{$lt: 1000}})
+{ _id: ObjectId("632875b803c513b469e0b1f6"),
+  title: 'Lentes de Sol',
+  price: 900,
+  url: 'url' }
+
+------------------LISTAMOS LOS PRODUCTOS CON PRECIO > A 1000 Y < A 3000------------------
+
+db.productos.find({$and: [{price: {$gte: 1000}}, {price: {$lte: 3000}}]})
+{ _id: ObjectId("632875b803c513b469e0b1f8"),
+  title: 'Gorro de Lana',
+  price: 1600,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fa"),
+  title: 'Remera',
+  price: 2100,
+  url: 'url' }
+{ _id: ObjectId("63287e0d03c513b469e0b209"),
+  title: 'Ojotas',
+  price: 1250,
+  url: 'url' }
+
+------------------LISTAMOS LOS PRODUCTOS CON PRECIO > A 3000------------------
+
+db.productos.find({price:{$gt: 3000}})
+{ _id: ObjectId("632875b803c513b469e0b1f4"),
+  title: 'Pantalon jogging',
+  price: 4300,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f5"),
+  title: 'Pantalon Jean',
+  price: 5000,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f7"),
+  title: 'Botas',
+  price: 4300,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1f9"),
+  title: 'Buzo',
+  price: 4000,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fb"),
+  title: 'Campera',
+  price: 4200,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fc"),
+  title: 'Zapatillas',
+  price: 5000,
+  url: 'url' }
+{ _id: ObjectId("632875b803c513b469e0b1fe"),
+  title: 'Camisa',
+  price: 4100,
+  url: 'url' }
+
+------------------LISTAMOS EL NOMBRE DEL TERCER PRODUCTO MAS BARATO------------------
+
+db.productos.find({},{"title": 1}).sort({price: 1}).skip(2).limit(1)
+{ _id: ObjectId("632875b803c513b469e0b1f8"),
+  title: 'Gorro de Lana' }
+
+------------------ACTUALIZAMOS TODOS LOS PRODUCTOS AGREGANDO STOCK = 100 ------------------
+
+db.productos.updateMany({},{$set: {stock: 100}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 10,
+  modifiedCount: 10,
+  upsertedCount: 0 }
+
+------------------ACTUALIZAMOS STOCK = 0 EN LOS PRODUCTOS CON PRECIO > A 4000------------------
+
+db.productos.updateMany({price: {$gt: 4000}},{$set: {stock: 0}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0 }
+
+------------------BORRAMOS LOS PRODUCTOS CON PRECIO < A 1000------------------
+
+db.productos.deleteMany({price: {$lt: 1000}})
+{ acknowledged: true, deletedCount: 1 }
+
+------------------CREAMOS UN USUARIO------------------
+
+use admin
+'switched to db admin'
+db.createUser(
+  {
+    user: "pepe",
+    pwd: "asd456",
+    roles: [{role: "read", db: "ecommerce"}]
+  }
+  )
+{ ok: 1 }git 
+
+------------------PROBAMOS EL ACCESO DEL USUARIO------------------
+
+C:\Users\Usuario>mongosh -u pepe -p asd456
+Current Mongosh Log ID: 6328a689b2d8fc233c83983d
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.4
+Using MongoDB:          6.0.1
+Using Mongosh:          1.5.4
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+test> use clase
+switched to db clase
+clase> db.clase.find()
+MongoServerError: not authorized on clase to execute command { find: "clase", filter: {}, lsid: { id: UUID("0b0c9523-0339-4689-8f05-318e1b35d5db") }, $db: "clase" }
+clase> use ecommerce
+switched to db ecommerce
+ecommerce> db.productos.find()
+[
+  {
+    _id: ObjectId("632875b803c513b469e0b1f4"),
+    title: 'Pantalon jogging',
+    price: 4300,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1f5"),
+    title: 'Pantalon Jean',
+    price: 5000,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1f7"),
+    title: 'Botas',
+    price: 4300,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1f8"),
+    title: 'Gorro de Lana',
+    price: 1600,
+    url: 'url',
+    stock: 100
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1f9"),
+    title: 'Buzo',
+    price: 4000,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1fa"),
+    title: 'Remera',
+    price: 2100,
+    url: 'url',
+    stock: 100
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1fb"),
+    title: 'Campera',
+    price: 4200,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1fc"),
+    title: 'Zapatillas',
+    price: 5000,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("632875b803c513b469e0b1fe"),
+    title: 'Camisa',
+    price: 4100,
+    url: 'url',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63287e0d03c513b469e0b209"),
+    title: 'Ojotas',
+    price: 1250,
+    url: 'url',
+    stock: 100
+  }
+]
+
