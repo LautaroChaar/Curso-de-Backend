@@ -33,10 +33,7 @@ export const config = {
             host: 'localhost',
             user: 'coderhouse',
             password: 'coderhouse',
-            database: {
-                prod: 'productos', 
-                cart: 'carritos'
-            }
+            database: 'coder'
         }
     }
 }

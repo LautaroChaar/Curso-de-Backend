@@ -108,7 +108,7 @@ class ContenedorFirebase {
                 const array = item.data().productos;
                 const array2 = array.filter((item) => item.id != id_prod);
                 await doc.update({productos: array2});
-                return ({msg: `Producto agregado con exito al carrito!`});              
+                return ({msg: `Producto eliminado con exito del carrito!`});              
             }    
         } catch (error) {
             console.log(error);

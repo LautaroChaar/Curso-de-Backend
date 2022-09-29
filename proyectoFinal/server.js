@@ -1,6 +1,6 @@
 import  express  from 'express';
-import {routerCarritoMongo}  from './src/routes/carritoMongo.routes.js';
-import {routerProductosMongo} from './src/routes/productosMongo.routes.js';
+import {routerProductos} from './src/routes/productos.routes.js';
+import {routerCarrito} from './src/routes/carrito.routes.js';
 
 const app = express();
 
@@ -8,8 +8,8 @@ app.use(express.static('/public'));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-app.use('/api/productos', routerProductosMongo);
-app.use('/api/carrito', routerCarritoMongo);
+app.use('/api/productos', routerProductos);
+app.use('/api/carrito', routerCarrito);
 
 app.get('*', (req, res)=>{
     res.status(404).json({
