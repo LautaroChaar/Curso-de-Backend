@@ -7,6 +7,30 @@ export class ContenedorMariaDB {
         this.productos = productos;
     }
     
+    deleteCartProduct = async (req, res) => {
+        try {
+
+            const id = Number(req.params.id);
+            const id_prod = Number(req.params.id_prod);
+            if (await this.knexCli.from(this.carritos).select('*').where({id: id}) == false) {
+                return ({code: 404, msg: `Carrito ${id} no encontrado`});
+            } else {
+                if (await this.knexCli.from(this.productos).select('*').where({id: id_prod}) == false) {
+                    return ({code: 404, msg: `Producto no encontrado`});
+                } else {
+                    let res = await this.knexCli.from(this.productos).select('*').where({id: id_prod});
+                    let prod = JSON.stringify(res);
+                    await this.knexCli.from(this.carritos).select('productos').where({id: id}).delete({'productos': prod})
+                    return ({msg: `Producto eliminado con exito del carrito!`});
+                }
+            }
+        } catch (error) {
+            console.log(error);
+            return ({code: 500, msg: `Error al eliminar el producto del carrito mediante el metodo ${req.method}`});
+        }
+    }
+
+
     addCartProduct = async (req, res) => {
         try {
             const id = Number(req.params.id);
@@ -17,11 +41,8 @@ export class ContenedorMariaDB {
                     return ({code: 404, msg: `Producto no encontrado`});
                 } else {
                     let res = await this.knexCli.from(this.productos).select('*').where({id: req.body.id});
-                    
-                    await this.knexCli.from(this.carritos).select('productos').where({id: id}).update({'productos': res})
-                    
-                    
-                    
+                    let prod = JSON.stringify(res);
+                    await this.knexCli.from(this.carritos).select('productos').where({id: id}).update({'productos': prod})
                     return ({msg: `Producto agregado con exito al carrito!`});
                 }
             }
