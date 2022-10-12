@@ -9,9 +9,11 @@ switch (process.env.PERS) {
     case 'json':
         const { default: ProductosDaoArchivos } = await import('./productos/productosDaoArchivos.js');
         const { default: CarritosDaoArchivos } = await import('./carritos/carritosDaoArchivos.js');
+        const { default: MensajesDaoArchivos } = await import('./mensajes/mensajesDaoArchivos.js');
 
         productosDao = new ProductosDaoArchivos();
         carritosDao = new CarritosDaoArchivos();
+        mensajesDao = new MensajesDaoArchivos();
         break;
 
     case 'firebase':

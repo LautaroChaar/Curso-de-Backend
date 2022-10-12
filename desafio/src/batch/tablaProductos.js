@@ -10,7 +10,7 @@ knexCli.schema.dropTableIfExists('coder')
             table.string('nombre', 50).notNullable();
             table.string('descripcion', 50).notNullable();
             table.string('codigo', 50).notNullable();
-            table.timestamp('date').notNullable();
+            table.timestamp('timestamp').notNullable();
             table.decimal('precio').notNullable();
             table.decimal('stock').notNullable();
             table.string('foto').notNullable();

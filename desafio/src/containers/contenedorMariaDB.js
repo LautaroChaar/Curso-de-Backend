@@ -1,158 +1,81 @@
 import knex from 'knex';
 
 export class ContenedorMariaDB {
-    constructor(carritos, productos, config){
+    constructor(dataBase, config){
         this.knexCli = knex(config);
-        this.carritos = carritos;
-        this.productos = productos;
+        this.dataBase = dataBase;
     }
-    
-    deleteCartProduct = async (req, res) => {
-        try {
 
-            const id = Number(req.params.id);
-            const id_prod = Number(req.params.id_prod);
-            if (await this.knexCli.from(this.carritos).select('*').where({id: id}) == false) {
-                return ({code: 404, msg: `Carrito ${id} no encontrado`});
-            } else {
-                if (await this.knexCli.from(this.productos).select('*').where({id: id_prod}) == false) {
-                    return ({code: 404, msg: `Producto no encontrado`});
-                } else {
-                    let res = await this.knexCli.from(this.productos).select('*').where({id: id_prod});
-                    let prod = JSON.stringify(res);
-                    await this.knexCli.from(this.carritos).select('productos').where({id: id}).delete({'productos': prod})
-                    return ({msg: `Producto eliminado con exito del carrito!`});
-                }
-            }
+    getAll = async () => {
+        try {
+            return await this.knexCli.from(this.dataBase).select('*').orderBy('id', 'asc');
         } catch (error) {
             console.log(error);
-            return ({code: 500, msg: `Error al eliminar el producto del carrito mediante el metodo ${req.method}`});
+            return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
 
-
-    addCartProduct = async (req, res) => {
+    getById = async (id) => {
         try {
-            const id = Number(req.params.id);
-            if (await this.knexCli.from(this.carritos).select('*').where({id: id}) == false) {
-                return ({code: 404, msg: `Carrito ${id} no encontrado`});
+            if (await this.knexCli.from(this.dataBase).select('*').where({id: id}) == false) {
+                return ({code: 404, msg: `No encontrado`});
             } else {
-                if (await this.knexCli.from(this.productos).select('*').where({id: req.body.id}) == false) {
-                    return ({code: 404, msg: `Producto no encontrado`});
-                } else {
-                    let res = await this.knexCli.from(this.productos).select('*').where({id: req.body.id});
-                    let prod = JSON.stringify(res);
-                    await this.knexCli.from(this.carritos).select('productos').where({id: id}).update({'productos': prod})
-                    return ({msg: `Producto agregado con exito al carrito!`});
-                }
+                let res = await this.knexCli.from(this.dataBase).select('*').where({id: id});
+                return res[0];
             }
         } catch (error) {
             console.log(error);
-            return ({code: 500, msg: `Error al agregar un producto en el carrito mediante el metodo ${req.method}`});
+            return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
 
-    newCart = async (req, res) => {
+    add = async (elem) => {
         try {
-            const objs = await this.knexCli.from(this.carritos).select('*');
+            const objs = await this.knexCli.from(this.dataBase).select('*');
             let id;
             if (objs.length === 0) {
                 id = 1;
             } else {
                 id = objs[objs.length - 1].id + 1;
             }
-            const obj =  { ...req.body, id };
-            await this.knexCli(this.carritos).insert(obj);
-            return ({msg: 'Carrito creado con exito!'});
+            const obj =  { ...elem, id };
+            await this.knexCli(this.dataBase).insert(obj);
+            return ({msg: `Agregado!`});
         } catch (error) {
             console.log(error);
-            return ({code: 500, msg: `Error al crear un nuevo carrito mediante el metodo ${req.method}`});
+            return ({code: 500, msg: `Error al agregar`});
         }
     }
 
-    deleteCart = async (req, res) => {
+    update = async (elem) => {
         try {
-            const id = Number(req.params.id);
-            if (await this.knexCli.from(this.carritos).select('*').where({id: id}) == false) {
-                return ({code: 404, msg: `Carrito ${id} no encontrado`});
+            
+            const id = Number(elem.id);
+            if (await this.knexCli.from(this.dataBase).select('*').where({id: id}) == false) {
+                return ({code: 404, msg: `No encontrado`});
             } else {
-                await this.knexCli.from(this.carritos).where({id: id}).del();
-                return ({msg: `Carrito ${id} eliminado con exito!`});
+                await this.knexCli.from(this.dataBase).where({id: id}).update(elem);
+                return ({msg: `Actualizado`});
             }
         } catch (error) {
             console.log(error);
-            return({code: 500, msg: `Error al eliminar el carrito mediante el metodo ${req.method}`});
+            return ({code: 500, msg: `Error al actualizar`});
         }
     }
 
-    getProducts = async (req, res) => {
+    deleteById = async (id) => {
         try {
-            if (req.params.id) {
-                const id = Number(req.params.id);
-                if (await this.knexCli.from(this.productos).select('*').where({id: id}) == false) {
-                    return ({code: 404, msg: `Producto ${id} no encontrado`});
-                } else {
-                    return await this.knexCli.from(this.productos).select('*').where({id: id});
-                }
+            if (await this.knexCli.from(this.dataBase).select('*').where({id: id}) == false) {
+                return ({code: 404, msg: `No encontrado`});
             } else {
-                return await this.knexCli.from(this.productos).select('*').orderBy('id', 'asc');
+                await this.knexCli.from(this.dataBase).where({id: id}).del();
+                return ({msg: `Eliminado con exito!`});
             }
         } catch (error) {
-            console.log(error);
-            return ({code: 500, msg: `Error al obtener metodo ${req.method} en la ruta ${req.url}`});
+            return ({code: 500, msg: `Error al eliminar`});
         }
     }
-
-
-    updateProduct = async (req, res)=>{
-        try {
-            const id = Number(req.params.id);
-            if (await this.knexCli.from(this.productos).select('*').where({id: id}) == false) {
-                return ({code: 404, msg: `Producto ${id} no encontrado`});
-            } else {
-                await this.knexCli.from(this.productos).where({id: id}).update(req.body);
-                return ({msg: `Producto ${id} actualizado`});
-            }
-        } catch (error) {
-            console.log(error);
-            return ({code: 500, msg: `Error al actualizar el producto mediante el metodo ${req.method}`});
-        }
-    }
-
-
-    deleteProduct = async (req, res) => {
-        try {
-            const id = Number(req.params.id);
-            if (await this.knexCli.from(this.productos).select('*').where({id: id}) == false) {
-                return ({code: 404, msg: `Producto ${id} no encontrado`});
-            } else {
-                await this.knexCli.from(this.productos).where({id: id}).del();
-                return ({msg: `Producto ${id} eliminado con exito!`});
-            }
-        } catch (error) {
-            console.log(error);
-            return ({code: 500, msg: `Error al eliminar el producto mediante el metodo ${req.method}`});
-        }
-    }
-
-    addProduct = async (req, res) => {
-        try {
-            const objs = await this.knexCli.from(this.productos).select('*');
-            let id;
-            if (objs.length === 0) {
-                id = 1;
-            } else {
-                id = objs[objs.length - 1].id + 1;
-            }
-            const obj =  { ...req.body, id };
-            await this.knexCli(this.productos).insert(obj);
-            return ({msg: 'Producto agregado con exito!'});
-        } catch (error) {
-            console.log(error);
-            return ({code: 500, msg: `No se pudo agregar el producto mediante el metodo ${req.method}`});
-        }
-    }
-
+ 
 }
 
 export default ContenedorMariaDB;

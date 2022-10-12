@@ -14,12 +14,25 @@ socket.on('from-server-messages', messages => {
     let mensajesDsize = JSON.stringify(mensajesD).length;
     let compresion = parseInt((mensajesNsize * 100) / mensajesDsize);
     document.querySelector('#compresion').innerHTML = `Compresión: ${compresion}%`;
+    // console.log(mensajesD.mensajes)
     render(mensajesD.mensajes);
 });
 
 function render(messages) {
+    let email;
+    let timestamp;
+    let text;
     const messagesHTML = messages.map( m => {
-        return `<p style= 'color: brown'><b style= 'color: blue'>${m.author.email}</b> [${m.timestamp}]: <span style= 'color: green; font-family: italic'>${m.text}</span></p>`;
+        if (m.hasOwnProperty("_doc")) {
+            email = m._doc.author.email;
+            timestamp = m._doc.timestamp;
+            text = m._doc.text;
+        } else {
+            email = m.author.email;
+            timestamp = m.timestamp;
+            text = m.text;
+        }
+        return `<p style= 'color: brown'><b style= 'color: blue'>${email}</b> [${timestamp}]: <span style= 'color: green; font-family: italic'>${text}</span></p>`;
     }).join('');  
     document.querySelector('#history').innerHTML = messagesHTML;
 }

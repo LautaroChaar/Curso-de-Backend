@@ -16,20 +16,29 @@ const admin = (req, res, next) => {
     }
 }
 
-routerProductos.get('/:id?', async (req, res) => {
-    res.json((await apiProductos.getProducts(req, res)))
+routerProductos.get('/', async (req, res) => {
+    res.json((await apiProductos.getAll()));
+}); 
+
+routerProductos.get('/:id', async (req, res) => {
+    res.json((await apiProductos.getById(req.params.id)));
 }); 
 
 routerProductos.post('/', admin, async (req, res) => {
-    res.json((await apiProductos.addProduct(req, res)))
+    res.json((await apiProductos.add(req.body)));
 }); 
 
 routerProductos.put('/:id', admin, async (req, res) => {
-    res.json((await apiProductos.updateProduct(req, res)))
+    const elem = {...req.body, id: Number(req.params.id)};
+    res.json((await apiProductos.update(elem)));
 }); 
 
 routerProductos.delete('/:id', admin, async (req, res) => {
-    res.json((await apiProductos.deleteProduct(req, res)))
+    res.json((await apiProductos.deleteById(req.params.id)));
+}); 
+
+routerProductos.delete('/', admin, async (req, res) => {
+    res.json((await apiProductos.deleteAll()));
 }); 
 
 export { routerProductos };
