@@ -7,9 +7,9 @@ let DB_RANDOMPRODUCTS = [];
 
 function generarObjeto () {
     return {
-        title: faker.commerce.product(),
-        price: faker.finance.amount(),
-        url: faker.image.image()
+        nombre: faker.commerce.product(),
+        precio: faker.finance.amount(),
+        foto: faker.image.image()
         }
 }
 

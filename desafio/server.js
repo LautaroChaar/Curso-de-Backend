@@ -6,11 +6,9 @@ import {routerCarrito} from './src/routes/carrito.routes.js';
 import { routerRandomProductos } from './src/routes/randomProducts.routes.js';
 import { routerMensajes, listarMensajesNormalizados, agregarmensaje } from './src/routes/mensajes.routes.js';
 
-
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
-
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
@@ -43,7 +41,7 @@ server.on('error', err => console.log(`error en server ${err}`));
 
 io.on('connection', async socket => {
     console.log(`Nuevo cliente conectado! ${socket.id}`);
-
+    
     io.sockets.emit('from-server-messages', await listarMensajesNormalizados());
 
     socket.on('from-client-messages', async messages => {

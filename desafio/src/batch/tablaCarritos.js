@@ -8,7 +8,7 @@ knexCli.schema.dropTableIfExists('coder')
         knexCli.schema.createTable('carritos', table => {
             table.increments('id').primary();
             table.string('productos').notNullable();
-            table.timestamp('date').notNullable();
+            table.timestamp('timestamp').notNullable();
         })
             .then(()=> console.log("Tabla creada"))
             .catch(err=> {

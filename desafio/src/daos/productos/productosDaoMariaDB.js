@@ -3,7 +3,7 @@ import { config } from '../../utils/config.js';
 
 class ProductosDaoMariaDB extends ContenedorMariaDB {
     constructor() {
-        super('carritos', 'productos', config.mariaDB);
+        super('productos', config.mariaDB);
     }
 }
 
