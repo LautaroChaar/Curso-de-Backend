@@ -5,10 +5,35 @@ import {routerProductos} from './src/routes/productos.routes.js';
 import {routerCarrito} from './src/routes/carrito.routes.js';
 import { routerRandomProductos } from './src/routes/randomProducts.routes.js';
 import { routerMensajes, listarMensajesNormalizados, agregarmensaje } from './src/routes/mensajes.routes.js';
+import { routerAuth } from './src/routes/auth.routes.js';
+import { routerHome } from './src/routes/home.routes.js';
+import dotenv from 'dotenv';
+import connectMongo from 'connect-mongo';
+import session from "express-session";
+
+
+dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
+
+
+const MongoStore = connectMongo.create({
+    mongoUrl: process.env.MONGO_URL,
+    ttl: 60 
+})
+
+
+app.use(session({
+    store: MongoStore,
+    secret: process.env.SECRET_KEY,
+    resave: true,
+    saveUninitialized: true
+}))
+
+
+
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
@@ -21,6 +46,8 @@ app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito);
 app.use('/api/productos-test', routerRandomProductos);
 app.use('/api/mensajes', routerMensajes);
+app.use(routerAuth);
+app.use('/home', routerHome);
 
 
 app.get('*', (req, res)=>{

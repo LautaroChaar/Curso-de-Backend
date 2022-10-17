@@ -8,4 +8,3 @@ class CarritosDaoMariaDB extends ContenedorMariaDB {
 }
 
 export default CarritosDaoMariaDB;
-

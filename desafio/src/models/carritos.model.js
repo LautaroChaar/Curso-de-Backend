@@ -7,4 +7,3 @@ const carritoSchema = new Schema({
 })
 
 export const carritosModel = model('carritos', carritoSchema);
-

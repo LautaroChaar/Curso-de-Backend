@@ -8,4 +8,3 @@ class CarritosDaoMongoDB extends ContenedorMongoDB {
 }
 
 export default CarritosDaoMongoDB;
-

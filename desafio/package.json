@@ -1,25 +1,28 @@
 {
-  "name": "8",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@faker-js/faker": "^7.5.0",
-    "dotenv": "^16.0.2",
-    "express": "^4.18.1",
-    "firebase-admin": "^11.0.1",
-    "knex": "^2.3.0",
-    "mongoose": "^6.6.1",
-    "mysql": "^2.18.1",
-    "normalizr": "^3.6.2",
-    "pug": "^3.0.2",
-    "socket.io": "^4.5.2"
-  }
+    "name": "8",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@faker-js/faker": "^7.5.0",
+        "connect-mongo": "^4.6.0",
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.0.2",
+        "express": "^4.18.1",
+        "express-session": "^1.17.3",
+        "firebase-admin": "^11.0.1",
+        "knex": "^2.3.0",
+        "mongoose": "^6.6.1",
+        "mysql": "^2.18.1",
+        "normalizr": "^3.6.2",
+        "pug": "^3.0.2",
+        "socket.io": "^4.5.3"
+    }
 }

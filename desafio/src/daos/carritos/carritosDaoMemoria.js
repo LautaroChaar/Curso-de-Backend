@@ -8,4 +8,3 @@ class CarritosDaoMemoria extends ContenedorMemoria {
 }
 
 export default CarritosDaoMemoria;
-

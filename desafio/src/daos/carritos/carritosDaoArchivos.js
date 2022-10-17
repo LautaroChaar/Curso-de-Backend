@@ -8,4 +8,3 @@ class CarritosDaoArchivos extends ContenedorArchivos {
 }
 
 export default CarritosDaoArchivos;
-

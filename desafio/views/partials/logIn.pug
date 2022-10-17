@@ -1,0 +1,8 @@
+div.mt-5.mb-5
+    h3 Login
+    form#formLogin(method="POST" action="/login")
+        div.form-group
+            label(for="text") Nombre
+            input.form-control(type="text" name="nombre" aria-describedby="userComent" class="w-50" required)
+        div.form-group
+            button.btn.btn-success.mt-3(type="submit") Enviar 
