@@ -10,6 +10,7 @@ import { routerHome } from './src/routes/home.routes.js';
 import dotenv from 'dotenv';
 import connectMongo from 'connect-mongo';
 import session from "express-session";
+import passport from 'passport';
 
 
 dotenv.config();
@@ -21,7 +22,7 @@ const io = new Server(httpServer);
 
 const MongoStore = connectMongo.create({
     mongoUrl: process.env.MONGO_URL,
-    ttl: 60 
+    ttl: 600 
 })
 
 
@@ -32,8 +33,8 @@ app.use(session({
     saveUninitialized: true
 }))
 
-
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));

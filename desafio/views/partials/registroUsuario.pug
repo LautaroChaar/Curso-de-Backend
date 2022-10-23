@@ -1,0 +1,13 @@
+div.mt-5.mb-5
+    h3 Registro
+    form(method="POST" action="/registro")
+        div.form-group
+            label(for="text") Email
+            input.form-control(type="email" name="username" aria-describedby="userComent" class="w-50" required)
+            label(for="text") Contraseña
+            input.form-control(type="password" name="password" aria-describedby="userComent" class="w-50" required)
+        div.form-group
+            button.btn.btn-success.mt-3(type="submit") Registrar
+    form(method="GET" action="/login")
+        div.form-group
+            button.btn.btn-success.mt-3(type="submit") Ir a Login 

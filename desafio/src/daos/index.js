@@ -4,6 +4,7 @@ dotenv.config()
 let productosDao;
 let carritosDao;
 let mensajesDao;
+let usuariosDao;
 
 switch (process.env.PERS) {
     case 'json':
@@ -38,10 +39,12 @@ switch (process.env.PERS) {
         const { default: ProductosDaoMongoDB } = await import('./productos/productosDaoMongoDB.js');
         const { default: CarritosDaoMongoDB } = await import('./carritos/carritosDaoMongoDB.js');
         const { default: MensajesDaoMongoDB } = await import('./mensajes/mensajesDaoMongoDB.js');
+        const { default: UsuariosDaoMongoDB } = await import('./usuarios/usuariosDaoMongoDB.js');
 
         productosDao = new ProductosDaoMongoDB();
         carritosDao = new CarritosDaoMongoDB();
         mensajesDao = new MensajesDaoMongoDB();
+        usuariosDao = new UsuariosDaoMongoDB();
         break;
 
     case 'mariaDB':
@@ -54,4 +57,4 @@ switch (process.env.PERS) {
 
     }
 
-export { productosDao, carritosDao, mensajesDao };
+export { productosDao, carritosDao, mensajesDao, usuariosDao };

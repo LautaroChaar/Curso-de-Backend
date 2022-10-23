@@ -8,29 +8,6 @@ class ContenedorMongoDB {
     }
 
 
-    // addMessage = async (mensaje) => {
-    //     try {
-    //         const strConn = config.atlas.strConn;
-    //         await mongoose.connect(strConn); 
-    //         const objs = await this.segundoModel.find();
-    //         let id;
-    //         if (objs.length === 0) {
-    //             id = 1;
-    //         } else {
-    //             id = objs[objs.length - 1].id + 1;
-    //         }
-    //         const nuevoMensaje =  { ...mensaje, id };
-    //         console.log(nuevoMensaje)
-    //         await this.segundoModel.create(nuevoMensaje);
-    //         return ({msg: 'Mensaje agregado con exito!'});
-    //     } catch (error) {
-    //         console.log(error);
-    //         return ({code: 500, msg: `No se pudo agregar el mensaje mediante el metodo ${req.method}`});
-    //     } finally {
-    //         await mongoose.disconnect();
-    //     }
-    // }
-
     getAll = async () => {
         try {
             const strConn = config.atlas.strConn;
