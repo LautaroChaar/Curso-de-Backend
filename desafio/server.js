@@ -7,10 +7,14 @@ import { routerRandomProductos } from './src/routes/randomProducts.routes.js';
 import { routerMensajes, listarMensajesNormalizados, agregarmensaje } from './src/routes/mensajes.routes.js';
 import { routerAuth } from './src/routes/auth.routes.js';
 import { routerHome } from './src/routes/home.routes.js';
+import { routerInfo } from './src/routes/info.routes.js';
+import { routerRandoms } from './src/routes/randoms.routes.js';
 import dotenv from 'dotenv';
 import connectMongo from 'connect-mongo';
 import session from "express-session";
 import passport from 'passport';
+import minimist from 'minimist';
+
 
 
 dotenv.config();
@@ -49,6 +53,9 @@ app.use('/api/productos-test', routerRandomProductos);
 app.use('/api/mensajes', routerMensajes);
 app.use(routerAuth);
 app.use('/home', routerHome);
+app.use('/info', routerInfo);
+app.use('/api/randoms', routerRandoms);
+app.use('/info', routerInfo);
 
 
 app.get('*', (req, res)=>{
@@ -59,7 +66,12 @@ app.get('*', (req, res)=>{
 });
 
 
-const PORT = 8080 || process.env.PORT;
+let args = minimist(process.argv.slice(2));
+
+let options = {default: {port: 8080}};
+minimist([], options);
+
+const PORT = args.port || args.p || options.default.port;
 
 const server = httpServer.listen(PORT, () => {
     console.log(`Servidor escuchando en puerto http://localhost:${PORT}`);
