@@ -3,10 +3,10 @@ function generarNumero () {
     return random
 }
 
-function listaNumeros () {
+function listaNumeros (cantidad) {
     let array = [];
     
-    for (let i = 0; i < 1000; i++ ) {
+    for (let i = 0; i < cantidad; i++ ) {
         let num = generarNumero();
         array.push(num);
     }
@@ -19,35 +19,8 @@ function listaNumeros () {
     return respuesta;
 }
 
-process.on('message', msg =>  {
-    console.log('mensaje desde el procesos principal:\n');
-    console.log(msg);
-
-    const lista = listaNumeros();
+process.on('message', cantidad =>  {
+    const lista = listaNumeros(cantidad);
     process.send(lista);
+    process.exit(1);
 });
-
-
-
-
-// const calculo = () => {
-//     let sum = 0
-//     for (let i = 0; i < 6e9; i++) {
-//         sum += i
-//     }
-//     return sum
-// }
-
-// process.on('exit', () => {
-//     console.log(`worker #${process.pid} cerrado`)
-// })
-
-// process.on('message', msg => {
-//     console.log(`worker #${process.pid} iniciando su tarea`)
-//     const sum = calculo()
-//     process.send(sum)
-//     console.log(`worker #${process.pid} finalizó su trabajo`)
-//     process.exit()
-// })
-
-// process.send('listo')

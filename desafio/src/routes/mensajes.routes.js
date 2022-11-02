@@ -1,7 +1,6 @@
 import  express  from 'express';
 import { mensajesDao as apiMensajes } from '../daos/index.js'
 import { normalize, schema } from 'normalizr';
-import util from 'util';
 import * as dotenv from 'dotenv'; 
 dotenv.config()
 
@@ -20,7 +19,6 @@ const normalizarMensajes = (mensajesId) => normalize(mensajesId, schemaMensajes)
 async function listarMensajesNormalizados() {
     const mensajes = await apiMensajes.getAll();
     const normalizados = normalizarMensajes({ id: 'mensajes', mensajes });
-    // console.log(util.inspect(normalizados, false, 5, true));
     return normalizados;
 }
 
@@ -30,7 +28,7 @@ async function agregarmensaje(mensaje) {
 
 
 routerMensajes.get('/', async (req, res) => {
-    res.render('viewChat', await apiMensajes.getAll())
+    res.render('viewChat', await apiMensajes.getAll());
 }); 
 
 export { routerMensajes, listarMensajesNormalizados, agregarmensaje };
