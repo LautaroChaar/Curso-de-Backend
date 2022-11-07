@@ -1,0 +1,178 @@
+-------------------------------------NODEMON------------------------------------------
+
+----------Cluster---------
+
+[nodemon] starting `node server.js -m CLUSTER`
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 5700
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 15092
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 4576
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 10348
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 3056 
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 5032
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 1344 
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 4756 
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 12020
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 3784
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 11584
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 512
+
+
+tasklist /fi "imagename eq node.exe" (listar procesos ejecutados por node)
+
+node.exe                     10388 Console                    1    68.136 KB
+node.exe                     13972 Console                    1    28.892 KB
+node.exe                     11428 Console                    1    68.116 KB
+node.exe                     15092 Console                    1    67.912 KB
+node.exe                     12020 Console                    1    67.732 KB
+node.exe                      5032 Console                    1    67.884 KB
+node.exe                      4756 Console                    1    67.144 KB
+node.exe                      5700 Console                    1    68.756 KB
+node.exe                     11584 Console                    1    67.804 KB
+node.exe                      3056 Console                    1    67.984 KB
+node.exe                       512 Console                    1    68.356 KB
+node.exe                      4576 Console                    1    67.984 KB
+node.exe                      3784 Console                    1    67.864 KB
+node.exe                     10348 Console                    1    68.692 KB
+node.exe                      1344 Console                    1    68.108 KB
+
+----------Fork---------
+
+[nodemon] starting `node server.js -m FORK`
+Servidor escuchando en puerto http://localhost:8080 - PID WORKER 2676
+
+
+tasklist /fi "imagename eq node.exe" (listar procesos ejecutados por node)
+
+node.exe                     10388 Console                    1    68.136 KB
+node.exe                      2800 Console                    1    28.500 KB
+node.exe                      2676 Console                    1    66.948 KB
+
+
+-------------------------------------FOREVER------------------------------------------
+
+----------Cluster---------
+
+forever start server.js -m CLUSTER
+
+----------Fork---------
+
+forever start server.js -m FORK
+
+forever list (listar procesos)
+
+info:    Forever processes running
+data:        uid  command                            script                                  forever pid  id logfile                            uptime
+data:    [0] BWv3 "C:\Program Files\nodejs\node.exe" C:\backend\desafio\server.js -m CLUSTER 7876    2436    C:\Users\Usuario\.forever\BWv3.log 0:0:0:56.358
+data:    [1] 5TxX "C:\Program Files\nodejs\node.exe" C:\backend\desafio\server.js -m FORK    6272    3864    C:\Users\Usuario\.forever\5TxX.log 0:0:0:10.39
+
+
+forever stopall (detener todos los procesos)
+
+info:    Forever stopped processes:
+data:        uid  command                            script                                  forever pid  id logfile                            uptime
+data:    [0] BWv3 "C:\Program Files\nodejs\node.exe" C:\backend\desafio\server.js -m CLUSTER 7876    2436    C:\Users\Usuario\.forever\BWv3.log 0:0:4:53.97399999999999
+data:    [1] 5TxX "C:\Program Files\nodejs\node.exe" C:\backend\desafio\server.js -m FORK    6272    3864    C:\Users\Usuario\.forever\5TxX.log 0:0:4:8.007000000000005
+
+
+-------------------------------------PM2------------------------------------------
+
+
+----------Fork---------
+
+pm2 start server.js --name Servidor-1 --watch -- -p 2020 -m FORK
+[PM2] Starting C:\backend\desafio\server.js in fork_mode (1 instance)
+[PM2] Done.
+┌─────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ Servidor-1    │ default     │ 1.0.0   │ fork    │ 10384    │ 0s     │ 0    │ online    │ 17.1%    │ 34.6mb   │ Usuario  │ enabled  │
+
+
+----------Cluster---------
+
+pm2 start server.js --name Servidor-2 --watch -i 0 -- -p 5050 -m FORK
+[PM2] Starting C:\backend\desafio\server.js in cluster_mode (0 instance)
+[PM2] Done.
+┌─────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ Servidor-1    │ default     │ 1.0.0   │ fork    │ 10384    │ 89s    │ 0    │ online    │ 0%       │ 81.5mb   │ Usuario  │ enabled  │
+│ 1   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 13924    │ 1s     │ 0    │ online    │ 0%       │ 35.2mb   │ Usuario  │ enabled  │
+│ 2   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 13608    │ 1s     │ 0    │ online    │ 0%       │ 34.7mb   │ Usuario  │ enabled  │
+│ 3   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 10840    │ 1s     │ 0    │ online    │ 0%       │ 34.8mb   │ Usuario  │ enabled  │
+│ 4   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 12476    │ 1s     │ 0    │ online    │ 0%       │ 34.4mb   │ Usuario  │ enabled  │
+│ 5   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 10524    │ 1s     │ 0    │ online    │ 0%       │ 34.6mb   │ Usuario  │ enabled  │
+│ 6   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 1016     │ 0s     │ 0    │ online    │ 0%       │ 34.4mb   │ Usuario  │ enabled  │
+│ 7   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 2632     │ 0s     │ 0    │ online    │ 0%       │ 34.5mb   │ Usuario  │ enabled  │
+│ 8   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 14276    │ 0s     │ 0    │ online    │ 0%       │ 34.4mb   │ Usuario  │ enabled  │
+│ 9   │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 13828    │ 0s     │ 0    │ online    │ 0%       │ 34.6mb   │ Usuario  │ enabled  │
+│ 10  │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 12460    │ 0s     │ 0    │ online    │ 0%       │ 34.7mb   │ Usuario  │ enabled  │
+│ 11  │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 13640    │ 0s     │ 0    │ online    │ 0%       │ 34.3mb   │ Usuario  │ enabled  │
+│ 12  │ Servidor-2    │ default     │ 1.0.0   │ cluster │ 7480     │ 0s     │ 0    │ online    │ 0%       │ 34.4mb   │ Usuario  │ enabled  │
+
+------------Finalizar procesos------------
+
+pm2 delete all
+[PM2] Applying action deleteProcessId on app [all](ids: [
+   0, 1, 2, 3,  4,  5,
+   6, 7, 8, 9, 10, 11,
+  12
+])
+[PM2] [Servidor-1](0) ✓
+[PM2] [Servidor-2](1) ✓
+[PM2] [Servidor-2](2) ✓
+[PM2] [Servidor-2](4) ✓
+[PM2] [Servidor-2](3) ✓
+[PM2] [Servidor-2](5) ✓
+[PM2] [Servidor-2](6) ✓
+[PM2] [Servidor-2](9) ✓
+[PM2] [Servidor-2](7) ✓
+[PM2] [Servidor-2](8) ✓
+[PM2] [Servidor-2](10) ✓
+[PM2] [Servidor-2](11) ✓
+[PM2] [Servidor-2](12) ✓
+┌─────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+└─────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────
+
+
+----------------------------------------------------Nginx-----------------------------------------------
+
+starting `node server.js -p 8081 -m CLUSTER`
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 12144
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 2620
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 8836
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 11748
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 8032
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 2612
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 12740
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 12312
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 12752
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 8804
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 8944
+Servidor escuchando en puerto http://localhost:8081 - PID WORKER 4516
+
+
+-------nginx.config----------
+
+events {
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    upstream node_app {
+	server 127.0.0.1:8081;
+	}  
+
+    server {
+        listen       8080;
+        server_name  localhost;
+	    root         ../nodeServer/public;
+
+        location /api/randoms/ {
+            proxy_pass http://node_app;
+        }
+    }
+}

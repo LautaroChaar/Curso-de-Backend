@@ -14,7 +14,8 @@ import connectMongo from 'connect-mongo';
 import session from "express-session";
 import passport from 'passport';
 import minimist from 'minimist';
-
+import cluster from 'cluster';
+import os from 'os';
 
 
 dotenv.config();
@@ -57,6 +58,11 @@ app.use('/info', routerInfo);
 app.use('/api/randoms', routerRandoms);
 app.use('/info', routerInfo);
 
+app.get('/datos', (req, res)=>{
+    res.send(`Servidor express en ${PORT} - PID ${process.pid} - ${new Date().toLocaleString()}`)
+})
+
+
 
 app.get('*', (req, res)=>{
     res.status(404).json({
@@ -65,28 +71,50 @@ app.get('*', (req, res)=>{
     })
 });
 
-
 let args = minimist(process.argv.slice(2));
 
-let options = {default: {port: 8080}};
+let options = {default: {port: 8080, modo: 'FORK'}};
 minimist([], options);
 
-const PORT = args.port || args.p || options.default.port;
+const CPU_CORES = os.cpus().length;
+const MODO = args.modo || args.m || options.default.modo;
+const PORT = parseInt(process.argv[2]) || args.port || args.p || options.default.port;
 
-const server = httpServer.listen(PORT, () => {
-    console.log(`Servidor escuchando en puerto http://localhost:${PORT}`);
-});
 
-server.on('error', err => console.log(`error en server ${err}`));
 
-io.on('connection', async socket => {
-    console.log(`Nuevo cliente conectado! ${socket.id}`);
-    
-    io.sockets.emit('from-server-messages', await listarMensajesNormalizados());
+if (cluster.isPrimary && MODO == 'CLUSTER') {
 
-    socket.on('from-client-messages', async messages => {
-        await agregarmensaje(messages);
-        io.sockets.emit('from-server-messages', await listarMensajesNormalizados())
+    for (let i = 0; i < CPU_CORES; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('exit', worker => {
+        console.log(`Worker ${process.pid} ${worker.id} ${worker.pid} finalizo ${new Date().toLocaleString()}`);
+        cluster.fork();
     });
 
-});
+} else {
+
+    if (MODO != 'FORK' && MODO != 'CLUSTER') {
+        throw new Error(`El modo de ejecucion solicitado ( ${MODO} ) es incorrecto.`) 
+    } 
+
+    const server = httpServer.listen(PORT, () => {
+        console.log(`Servidor escuchando en puerto http://localhost:${PORT} - PID WORKER ${process.pid}`);
+    });
+
+    server.on('error', err => console.log(`error en server ${err}`));
+
+
+    io.on('connection', async socket => {
+        console.log(`Nuevo cliente conectado! ${socket.id}`);
+
+        io.sockets.emit('from-server-messages', await listarMensajesNormalizados());
+
+        socket.on('from-client-messages', async messages => {
+            await agregarmensaje(messages);
+            io.sockets.emit('from-server-messages', await listarMensajesNormalizados())
+        });
+
+    });
+}

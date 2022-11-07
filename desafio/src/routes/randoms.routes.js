@@ -18,7 +18,6 @@ routerRandoms.get('/:cant?', (req, res) => {
         console.log(lista);
     });
     res.render('viewNumRandoms');
-
 });    
 
 

@@ -11,10 +11,13 @@ function listaNumeros (cantidad) {
         array.push(num);
     }
     array.sort();
-    let respuesta = array.reduce((acum, item) => {
-        acum[item] = (acum[item] || 0) + 1;
-        return acum
-    }, {})
+    const respuesta = array.reduce((acum, item) => {
+        const contador = acum[item] ||  0;
+        return {
+            acum,
+            [item]: count + 1
+        };
+    }, {});
 
     return respuesta;
 }

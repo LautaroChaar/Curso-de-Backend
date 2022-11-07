@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import util from 'util';
 import minimist from 'minimist';
+import os from 'os';
 
+const CPU_CORES = os.cpus().length;
 
 const routerInfo = new Router();
 
@@ -15,7 +17,7 @@ function print(obj) {
 routerInfo.get('/', (req, res) => {
     let memoria = print(process.memoryUsage());
     let argumentos = print(args);
-    res.render('viewInfo', {memoria, argumentos});
+    res.render('viewInfo', {memoria, argumentos, CPU_CORES});
 })
 
 
