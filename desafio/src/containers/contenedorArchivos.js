@@ -1,4 +1,5 @@
 import {promises as fs} from 'fs';
+import { logger } from '../utils/configLogger.js';
 
 
 class ContenedorArchivos {
@@ -10,10 +11,10 @@ class ContenedorArchivos {
     getAll = async () => {
         try {
             const elems = await fs.readFile(this.ruta, 'utf-8');
-            console.log(JSON.parse(elems))
+            logger.info(JSON.parse(elems))
             return JSON.parse(elems);
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
@@ -34,12 +35,13 @@ class ContenedorArchivos {
             } else {
                 newId = elems[elems.length - 1].id + 1;
             }
-            console.log(elem)
+            logger.info(elem)
             const newElem = { ...elem, id: newId, timestamp };
             elems.push(newElem);
             await fs.writeFile(this.ruta, JSON.stringify(elems, null, 2));
             return ({msg: `Agregado!`});
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al agregar`});
         }
     }
@@ -56,7 +58,7 @@ class ContenedorArchivos {
                 return ({msg: `Actualizado`});
             } 
         } catch (error) {
-            console.log(error);
+            logger.error(error);;
             return ({code: 500, msg: `Error al actualizar`});
         }
     }
@@ -71,6 +73,7 @@ class ContenedorArchivos {
             elems.splice(index, 1);
             await fs.writeFile(this.ruta, JSON.stringify(elems, null, 2));
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al eliminar`});
         }
     }
@@ -79,7 +82,7 @@ class ContenedorArchivos {
         try {
             await fs.writeFile(this.ruta, JSON.stringify([], null, 2));
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al eliminar`});
         }
     }

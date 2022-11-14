@@ -1,4 +1,5 @@
 import knex from 'knex';
+import { logger } from '../utils/configLogger.js';
 
 export class ContenedorMariaDB {
     constructor(dataBase, config){
@@ -10,7 +11,7 @@ export class ContenedorMariaDB {
         try {
             return await this.knexCli.from(this.dataBase).select('*').orderBy('id', 'asc');
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
@@ -24,7 +25,7 @@ export class ContenedorMariaDB {
                 return res[0];
             }
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
@@ -42,14 +43,13 @@ export class ContenedorMariaDB {
             await this.knexCli(this.dataBase).insert(obj);
             return ({msg: `Agregado!`});
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al agregar`});
         }
     }
 
     update = async (elem) => {
         try {
-            
             const id = Number(elem.id);
             if (await this.knexCli.from(this.dataBase).select('*').where({id: id}) == false) {
                 return ({code: 404, msg: `No encontrado`});
@@ -58,7 +58,7 @@ export class ContenedorMariaDB {
                 return ({msg: `Actualizado`});
             }
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al actualizar`});
         }
     }
@@ -72,6 +72,7 @@ export class ContenedorMariaDB {
                 return ({msg: `Eliminado con exito!`});
             }
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al eliminar`});
         }
     }

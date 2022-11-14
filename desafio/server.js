@@ -9,14 +9,14 @@ import { routerAuth } from './src/routes/auth.routes.js';
 import { routerHome } from './src/routes/home.routes.js';
 import { routerInfo } from './src/routes/info.routes.js';
 import { routerRandoms } from './src/routes/randoms.routes.js';
-import dotenv from 'dotenv';
 import connectMongo from 'connect-mongo';
 import session from "express-session";
 import passport from 'passport';
 import minimist from 'minimist';
 import cluster from 'cluster';
 import os from 'os';
-
+import { logger } from './src/utils/configLogger.js';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -54,21 +54,14 @@ app.use('/api/productos-test', routerRandomProductos);
 app.use('/api/mensajes', routerMensajes);
 app.use(routerAuth);
 app.use('/home', routerHome);
-app.use('/info', routerInfo);
 app.use('/api/randoms', routerRandoms);
 app.use('/info', routerInfo);
 
-app.get('/datos', (req, res)=>{
-    res.send(`Servidor express en ${PORT} - PID ${process.pid} - ${new Date().toLocaleString()}`)
-})
-
-
 
 app.get('*', (req, res)=>{
-    res.status(404).json({
-        error: 404,
-        descripcion: `Ruta ${req.url} no encontrada mediante el metodo ${req.method}`
-    })
+    const {url, method } = req;
+    logger.warn(`Ruta ${method} ${url} no implementada`)
+    res.send(`Ruta ${method} ${url} no está implementada`);
 });
 
 let args = minimist(process.argv.slice(2));
@@ -89,25 +82,26 @@ if (cluster.isPrimary && MODO == 'CLUSTER') {
     }
 
     cluster.on('exit', worker => {
-        console.log(`Worker ${process.pid} ${worker.id} ${worker.pid} finalizo ${new Date().toLocaleString()}`);
+        logger.info(`Worker ${process.pid} ${worker.id} ${worker.pid} finalizo ${new Date().toLocaleString()}`);
         cluster.fork();
     });
 
 } else {
 
     if (MODO != 'FORK' && MODO != 'CLUSTER') {
-        throw new Error(`El modo de ejecucion solicitado ( ${MODO} ) es incorrecto.`) 
+        logger.error(`El modo de ejecucion solicitado ( ${MODO} ) es incorrecto.`)
+        throw new Error()
     } 
 
     const server = httpServer.listen(PORT, () => {
-        console.log(`Servidor escuchando en puerto http://localhost:${PORT} - PID WORKER ${process.pid}`);
+        logger.info(`Servidor escuchando en puerto http://localhost:${PORT} - PID WORKER ${process.pid}`);
     });
 
-    server.on('error', err => console.log(`error en server ${err}`));
+    server.on('error', err => logger.error(`error en server ${err}`));
 
 
     io.on('connection', async socket => {
-        console.log(`Nuevo cliente conectado! ${socket.id}`);
+        logger.info(`Nuevo cliente conectado! ${socket.id}`);
 
         io.sockets.emit('from-server-messages', await listarMensajesNormalizados());
 

@@ -5,14 +5,17 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "node benchmark.js",
+        "start": "0x server.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@faker-js/faker": "^7.5.0",
+        "autocannon": "^7.10.0",
         "bcrypt": "^5.1.0",
+        "compression": "^1.7.4",
         "connect-mongo": "^4.6.0",
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.2",
@@ -20,6 +23,7 @@
         "express-session": "^1.17.3",
         "firebase-admin": "^11.0.1",
         "knex": "^2.3.0",
+        "log4js": "^6.7.0",
         "minimist": "^1.2.7",
         "mongoose": "^6.6.1",
         "mysql": "^2.18.1",

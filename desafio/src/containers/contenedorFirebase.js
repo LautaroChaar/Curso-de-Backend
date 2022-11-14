@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
 import {config} from '../utils/config.js';
+import { logger } from '../utils/configLogger.js';
 
 
 admin.initializeApp({
@@ -29,7 +30,7 @@ class ContenedorFirebase {
             }))
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
@@ -40,7 +41,7 @@ class ContenedorFirebase {
             const item = await doc.get();
             return item.data();
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
@@ -62,6 +63,7 @@ class ContenedorFirebase {
             await doc.create(obj);
             return ({msg: `Agregado!`});
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al agregar`});
         }
     }
@@ -78,7 +80,7 @@ class ContenedorFirebase {
                 return ({msg: `Producto actualizado`});
             }
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al actualizar`});
         }
     }
@@ -94,6 +96,7 @@ class ContenedorFirebase {
                 return ({msg: `Producto ${id} eliminado con exito!`});
             }
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al eliminar`});
         }
     }

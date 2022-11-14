@@ -1,3 +1,5 @@
+import { logger } from '../utils/configLogger.js';
+
 class ContenedorMemoria {
     constructor(dataBase) {
         this.dataBase = dataBase;
@@ -7,7 +9,7 @@ class ContenedorMemoria {
         try {
             return (this.dataBase);
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al completar la solicitud`});
         }
     }
@@ -32,6 +34,7 @@ class ContenedorMemoria {
             elems.push(newElem);
             return ({msg: `Agregado!`});
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al agregar`});
         }
     }
@@ -47,7 +50,7 @@ class ContenedorMemoria {
                 return ({msg: `Actualizado`});
             } 
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al actualizar`});
         }
     }
@@ -63,6 +66,7 @@ class ContenedorMemoria {
                 return ({msg: `Eliminado!`});
             }
         } catch (error) {
+            logger.error(error);
             return ({code: 500, msg: `Error al eliminar`});
         }
     }
@@ -71,7 +75,7 @@ class ContenedorMemoria {
         try {
             this.productos = [];
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return ({code: 500, msg: `Error al eliminar`});
         }
     }

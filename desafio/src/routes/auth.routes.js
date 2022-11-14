@@ -2,6 +2,7 @@ import { Router } from 'express';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 import bcrypt from 'bcrypt';
+import { logger } from '../utils/configLogger.js';
 import * as dotenv from 'dotenv'; 
 dotenv.config()
 
@@ -50,22 +51,30 @@ passport.deserializeUser (async (email, done) => {
 
 
 routerAuth.get('/', (req, res) => {
+    const {url, method } = req;
+    logger.info(`Ruta ${method} ${url}`);
     res.redirect('/home');
 })
 
 routerAuth.get('/login', (req, res) => {
+    const {url, method } = req;
+    logger.info(`Ruta ${method} ${url}`);
     res.render('viewLogin');
 })
 
 routerAuth.post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login-error'}))
 
 routerAuth.get('/logout', (req, res)=> {
+    const {url, method } = req;
+    logger.info(`Ruta ${method} ${url}`);
     req.logOut(err => {
         res.redirect('/');
     });
 })
 
 routerAuth.get('/registro', (req, res) => {
+    const {url, method } = req;
+    logger.info(`Ruta ${method} ${url}`);
     res.render('viewRegistro');
 })
 
@@ -83,6 +92,8 @@ routerAuth.post('/registro', async (req, res) => {
 })
 
 routerAuth.get('/login-error', (req, res)=>{
+    const {url, method } = req;
+    logger.info(`Ruta ${method} ${url}`);
     res.render('viewLoginFallido');
 })
 

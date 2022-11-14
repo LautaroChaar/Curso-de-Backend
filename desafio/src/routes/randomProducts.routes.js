@@ -1,5 +1,6 @@
 import  express  from 'express';
 import { faker } from '@faker-js/faker';
+import { logger } from '../utils/configLogger.js';
 
 const routerRandomProductos = express.Router();
 
@@ -17,6 +18,8 @@ routerRandomProductos.get('/', async (req, res) => {
     for (let i = 0; i < 5; i ++) {
         DB_RANDOMPRODUCTS.push(generarObjeto());
     }
+    const {url, method } = req;
+    logger.info(`Ruta ${method} /api/productos-test${url}`);
     res.render('viewRandomProducts', {DB_RANDOMPRODUCTS});
     DB_RANDOMPRODUCTS = [];
 }); 
