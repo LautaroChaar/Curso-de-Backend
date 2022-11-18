@@ -61,7 +61,7 @@ app.use('/info', routerInfo);
 app.get('*', (req, res)=>{
     const {url, method } = req;
     logger.warn(`Ruta ${method} ${url} no implementada`)
-    res.send(`Ruta ${method} ${url} no está implementada`);
+    res.render('viewRutaIncorrecta', { url, method });
 });
 
 let args = minimist(process.argv.slice(2));
