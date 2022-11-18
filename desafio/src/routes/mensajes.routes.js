@@ -1,6 +1,7 @@
 import  express  from 'express';
 import { mensajesDao as apiMensajes } from '../daos/index.js'
 import { normalize, schema } from 'normalizr';
+import { auth } from '../../auth/index.js';
 import { logger } from '../utils/configLogger.js';
 import * as dotenv from 'dotenv'; 
 dotenv.config()
@@ -28,7 +29,7 @@ async function agregarmensaje(mensaje) {
 }
 
 
-routerMensajes.get('/', async (req, res) => {
+routerMensajes.get('/', auth, async (req, res) => {
     const {url, method } = req;
     logger.info(`Ruta ${method} /api/mensajes${url}`);
     res.render('viewChat', await apiMensajes.getAll());
