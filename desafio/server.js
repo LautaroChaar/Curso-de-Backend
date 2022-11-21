@@ -52,7 +52,7 @@ app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito);
 app.use('/api/productos-test', routerRandomProductos);
 app.use('/api/mensajes', routerMensajes);
-app.use(routerAuth);
+app.use('/api', routerAuth);
 app.use('/home', routerHome);
 app.use('/api/randoms', routerRandoms);
 app.use('/info', routerInfo);
