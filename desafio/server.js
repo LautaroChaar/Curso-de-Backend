@@ -52,10 +52,10 @@ app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito);
 app.use('/api/productos-test', routerRandomProductos);
 app.use('/api/mensajes', routerMensajes);
-app.use('/api', routerAuth);
-app.use('/home', routerHome);
+app.use('/api/', routerAuth);
+app.use('/api/home', routerHome);
 app.use('/api/randoms', routerRandoms);
-app.use('/info', routerInfo);
+app.use('/api/info', routerInfo);
 
 
 app.get('*', (req, res)=>{

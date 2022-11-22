@@ -1,6 +1,6 @@
 div.mt-5.mb-5
     h3 Login
-    form#formLogin(method="POST" action="/login")
+    form#formLogin(method="POST" action="/api/login")
         div.form-group
             label(for="text") Email
             input#username.form-control(type="email" name="username" aria-describedby="userComent" class="w-50" required)
@@ -8,6 +8,6 @@ div.mt-5.mb-5
             input#password.form-control(type="password" name="password" aria-describedby="userComent" class="w-50" required)
         div.form-group
             button.btn.btn-success.mt-3(type="submit") Enviar
-    form(method="GET" action="/registro")
+    form(method="GET" action="/api/registro")
         div.form-group 
             button.btn.btn-success.mt-3(type="submit") Ir a Registro 

@@ -1,8 +1,8 @@
 div.mt-5.mb-5
     h2 Bienvenid@ #{nombre}!
-    form#formLogout(method="POST" action="/logout")
+    form#formLogout(method="POST" action="/api/logout")
         div(class="row justify-content-end ")
-            button.btn.btn-danger.mt-3(type="button" onclick="location.href='/logout'") Logout 
+            button.btn.btn-danger.mt-3(type="button" onclick="location.href='/api/logout'") Logout 
     div 
         h1#compresion 
     h3 Chat Websocket!
