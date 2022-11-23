@@ -71,7 +71,7 @@ minimist([], options);
 
 const CPU_CORES = os.cpus().length;
 const MODO = args.modo || args.m || options.default.modo;
-const PORT = process.env.PORT || 3000;
+const PORT =  process.env.PORT || parseInt(process.argv[2]) || args.port || args.p || options.default.port ;
 
 
 if (cluster.isPrimary && MODO == 'CLUSTER') {
