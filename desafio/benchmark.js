@@ -20,6 +20,7 @@ function run(url) {
 }
 
 run('http://localhost:8080/info')
+
 /*
   modo consola
   autocannon -d 20 -c 100 "http://localhost:8080/info"

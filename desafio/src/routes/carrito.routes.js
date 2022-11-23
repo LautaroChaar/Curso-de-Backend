@@ -1,7 +1,5 @@
 import  express  from 'express';
 import { logger } from '../utils/configLogger.js';
-import * as dotenv from 'dotenv'; 
-dotenv.config()
 
 import { carritosDao as apiCarrito } from '../daos/index.js';
 import { productosDao as apiProductos } from '../daos/index.js';

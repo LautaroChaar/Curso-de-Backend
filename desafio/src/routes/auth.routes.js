@@ -3,8 +3,6 @@ import passport from 'passport';
 import { Strategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import { logger } from '../utils/configLogger.js';
-import * as dotenv from 'dotenv'; 
-dotenv.config()
 
 import { usuariosDao as apiUsuarios } from '../daos/index.js';
 

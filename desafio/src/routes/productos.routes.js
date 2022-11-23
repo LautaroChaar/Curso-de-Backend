@@ -1,8 +1,6 @@
 import  express  from 'express';
 import { config } from '../utils/config.js';
 import { logger } from '../utils/configLogger.js';
-import * as dotenv from 'dotenv'; 
-dotenv.config()
 
 import { productosDao as apiProductos } from '../daos/index.js';
 

@@ -15,7 +15,7 @@ function listaNumeros (cantidad) {
         const contador = acum[item] ||  0;
         return {
             acum,
-            [item]: count + 1
+            [item]: contador + 1
         };
     }, {});
 
