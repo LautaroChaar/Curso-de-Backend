@@ -95,7 +95,8 @@ if (cluster.isPrimary && MODO == 'CLUSTER') {
     } 
 
     const server = httpServer.listen(PORT, () => {
-        logger.info(`Servidor escuchando en puerto http://localhost:${PORT} - PID WORKER ${process.pid}`);
+        logger.info(`Servidor escuchando ${PORT}`);
+        // en puerto http://localhost:${PORT} - PID WORKER ${process.pid}`
     });
 
     server.on('error', err => logger.error(`error en server ${err}`));
