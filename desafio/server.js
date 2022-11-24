@@ -66,7 +66,7 @@ app.get('*', (req, res)=>{
 
 let args = minimist(process.argv.slice(2));
 
-let options = {default: {port: 8080, modo: 'FORK'}};
+let options = {default: { modo: 'FORK'}};
 minimist([], options);
 
 const CPU_CORES = os.cpus().length;
