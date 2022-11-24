@@ -6,7 +6,7 @@
   "main": "benchmark.js",
   "scripts": {
     "test": "node benchmark.js",
-    "start": "0x server.js"
+    "start": "server.js"
   },
   "author": "",
   "license": "ISC",
