@@ -5,8 +5,7 @@
   "description": "",
   "main": "benchmark.js",
   "scripts": {
-    "test": "node benchmark.js",
-    "start": "server.js"
+    
   },
   "author": "",
   "license": "ISC",
