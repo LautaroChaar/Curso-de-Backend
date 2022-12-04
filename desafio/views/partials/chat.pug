@@ -1,28 +1,23 @@
 div.mt-5.mb-5
-    h2 Bienvenid@ #{nombre}!
-    form#formLogout(method="POST" action="/api/logout")
-        div(class="row justify-content-end ")
-            button.btn.btn-danger.mt-3(type="button" onclick="location.href='/api/logout'") Logout 
-    div 
-        h1#compresion 
-    h3 Chat Websocket!
-    form
-        div.form-group
-            label(for="email") Email
-            input#email.form-control(type="email" aria-describedby="userComent" placeholder="Example@example.com")
-            label(for="nombre") Nombre
-            input#nombre.form-control(type="text" aria-describedby="userComent" )
-            label(for="apellido") Apellido
-            input#apellido.form-control(type="text" aria-describedby="userComent" )
-            label(for="edad") Edad
-            input#edad.form-control(type="number" aria-describedby="userComent" )
-            label(for="alias") Alias
-            input#alias.form-control(type="text" aria-describedby="userComent" )
-            label(for="avatar") Avatar
-            input#avatar.form-control(type="url" aria-describedby="userComent" )
-        div.form-group
-            label(for="messageContent") Mensaje:
-            textarea#messageContent.form-control(rows="4")
-        button.btn.btn-success.mt-3(type="button" onclick='sendMessage()') Enviar 
-        hr
-        div#history
+    div.jumbotron
+        h3 Chat Websocket!
+        form
+            div.form-group
+                label(for="email") Email
+                input#email.form-control(type="email" aria-describedby="userComent" placeholder="Example@example.com")
+                label(for="nombre") Nombre
+                input#nombre.form-control(type="text" aria-describedby="userComent" )
+                label(for="apellido") Apellido
+                input#apellido.form-control(type="text" aria-describedby="userComent" )
+                label(for="edad") Edad
+                input#edad.form-control(type="number" aria-describedby="userComent" )
+                label(for="alias") Alias
+                input#alias.form-control(type="text" aria-describedby="userComent" )
+                label(for="avatar") Avatar
+                input#avatar.form-control(type="url" aria-describedby="userComent" )
+            div.form-group
+                label(for="messageContent") Mensaje:
+                textarea#messageContent.form-control(rows="4")
+            button.btn.btn-success.mt-3(type="button" onclick='sendMessage()') Enviar 
+            hr
+    div#history

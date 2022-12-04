@@ -82,6 +82,24 @@ class ContenedorMongoDB {
         }
     }
 
+    emptyCart = async (id) => {
+        try {
+            const strConn = config.atlas.strConn;
+            await mongoose.connect(strConn);
+            if (await this.model.find({id: id}) == false) {
+                return ({code: 404, msg: `No encontrado`});
+            } else {
+                await this.model.updateOne({id: id}, {$set: {productos: []}})
+                return ({msg: `Actualizado`});
+            }
+        } catch (error) {
+            logger.error(error);
+            return ({code: 500, msg: `Error al actualizar`});
+        } finally {
+            await mongoose.disconnect();
+        }
+    }
+
     deleteById = async (id) => {
         try {
             const strConn = config.atlas.strConn;

@@ -1,0 +1,26 @@
+div.mt-5
+    h2(style="color:crimson;" class="text-center") Lista de Productos
+    br
+    div.table-responsive
+        if DB_PRODUCTS.length > 0
+            div(class="table-responsive")
+                table.table.table-dark
+                    tr(class="text-center" style="color: yellow;") 
+                        th Id
+                        th Producto 
+                        th Precio
+                        th Imagen
+                    each product in DB_PRODUCTS
+                        tr
+                            td(class="text-center col-3")=product.id
+                            td(class="text-center col-3")=product.nombre
+                            td(class="text-center col-3")=product.precio
+                            td(class="text-center col-3")
+                                img(width="30" src=product.imagen, alt="")
+        else
+            h3(class="alert alert-warning text-center") No se encontraron productos
+    form(method="POST" action="/api/carrito/productos" class="mx-auto")
+        div.form-group
+            label(for="text") Id del producto
+            input.form-control(type="number" name="idProd" aria-describedby="userComent" min="1" required)
+            button.btn.btn-success.mt-3(type="submit") Agregar al carrito

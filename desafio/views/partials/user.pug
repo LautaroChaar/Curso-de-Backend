@@ -1,0 +1,7 @@
+div.mt-5.mb-5
+    div(class="row")
+        h2(class="col align-self-center") Bienvenid@ #{nombre}!
+        form#formLogout(class="col align-self-center" method="POST" action="/api/logout")
+            div(class="row justify-content-end")
+                button.btn.btn-success( class="mr-2" type="button" onclick="location.href='/api/carrito/'") Carrito
+                button.btn.btn-danger(type="button" onclick="location.href='/api/logout'") Logout 

@@ -1,12 +1,22 @@
-div.mt-5.mb-5
+div.mt-5.mb-5(class="d-flex flex-column align-items-center")
     h3 Registro
-    form(method="POST" action="/api/registro")
+    form#login(method="POST" action="/api/registro" enctype="multipart/form-data" class="mx-auto" onsubmit="getPhone()")
         div.form-group
+            label(for="text") Nombre
+            input.form-control(type="text" name="name" aria-describedby="userComent"  required)
+            label(for="text") Dirección
+            input.form-control(type="text" name="adress" aria-describedby="userComent"  required)
+            label(for="text") Edad
+            input.form-control(type="number" name="age" aria-describedby="userComent"  min="1" required)
+            label(for="text" style="display: block;") Teléfono
+            input#phone.form-control(type="tel" name="phone" aria-describedby="userComent"  required)
+            label(for="text" style="display: block;") Foto
+            input.form-control(type="file" name="avatar" aria-describedby="userComent" class="border-0" required)
             label(for="text") Email
-            input.form-control(type="email" name="username" aria-describedby="userComent" class="w-50" required)
+            input.form-control(type="email" name="username" aria-describedby="userComent" required)
             label(for="text") Contraseña
-            input.form-control(type="password" name="password" aria-describedby="userComent" class="w-50" required)
-        div.form-group
+            input.form-control(type="password" name="password" aria-describedby="userComent" required)
+        div.form-group(class="d-flex justify-content-center")
             button.btn.btn-success.mt-3(type="submit") Registrar
     form(method="GET" action="/api/login")
         div.form-group

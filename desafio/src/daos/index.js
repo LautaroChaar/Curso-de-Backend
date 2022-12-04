@@ -7,34 +7,7 @@ let mensajesDao;
 let usuariosDao;
 
 switch (process.env.PERS) {
-    case 'json':
-        const { default: ProductosDaoArchivos } = await import('./productos/productosDaoArchivos.js');
-        const { default: CarritosDaoArchivos } = await import('./carritos/carritosDaoArchivos.js');
-        const { default: MensajesDaoArchivos } = await import('./mensajes/mensajesDaoArchivos.js');
 
-        productosDao = new ProductosDaoArchivos();
-        carritosDao = new CarritosDaoArchivos();
-        mensajesDao = new MensajesDaoArchivos();
-        break;
-
-    case 'firebase':
-        const { default: ProductosDaoFirebase} = await import('./productos/productosDaoFirebase.js');
-        const { default: CarritosDaoFirebase } = await import('./carritos/carritosDaoFirebase.js');
-        const { default: MensajesDaoFirebase } = await import('./mensajes/mensajesDaoFirebase.js');
-
-        productosDao = new ProductosDaoFirebase();
-        carritosDao = new CarritosDaoFirebase();
-        mensajesDao = new MensajesDaoFirebase();
-        break;
-
-    case 'memoria':
-        const { default: ProductosDaoMemoria } = await import('./productos/productosDaoMemoria.js');
-        const { default: CarritosDaoMemoria } = await import('./carritos/carritosDaoMemoria.js');
-        
-        productosDao = new ProductosDaoMemoria();
-        carritosDao = new CarritosDaoMemoria();
-        break;
-    
     case 'mongoDB': 
         const { default: ProductosDaoMongoDB } = await import('./productos/productosDaoMongoDB.js');
         const { default: CarritosDaoMongoDB } = await import('./carritos/carritosDaoMongoDB.js');
@@ -45,14 +18,6 @@ switch (process.env.PERS) {
         carritosDao = new CarritosDaoMongoDB();
         mensajesDao = new MensajesDaoMongoDB();
         usuariosDao = new UsuariosDaoMongoDB();
-        break;
-
-    case 'mariaDB':
-        const { default: ProductosDaoMariaDB } = await import('./productos/productosDaoMariaDB.js');
-        const { default: CarritosDaoMariaDB } = await import('./carritos/carritosDaoMariaDB.js');
-
-        productosDao = new ProductosDaoMariaDB();
-        carritosDao = new CarritosDaoMariaDB();
         break;
 
     }

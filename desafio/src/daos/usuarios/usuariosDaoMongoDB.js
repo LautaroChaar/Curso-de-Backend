@@ -3,6 +3,7 @@ import {config} from '../../utils/config.js';
 import ContenedorMongoDB from "../../containers/contenedorMongoDB.js";
 import { usuariosModel } from "../../models/usuariosModel.js";
 
+
 class UsuariosDaoMongoDB extends ContenedorMongoDB {
    constructor() {
       super(usuariosModel);
@@ -12,18 +13,16 @@ getById = async (username) => {
     try {
         const strConn = config.atlas.strConn;
         await mongoose.connect(strConn);
-        if (await this.model.find({email: username}) == false) {
+        if (await this.model.find({username: username}) == false) {
             return false;
         } else {
-            let res = await this.model.find({email: username});
+            let res = await this.model.find({username: username});
             return res[0];
         }
     } catch (error) {
         console.log(error);
         return ({code: 500, msg: `Error al completar la solicitud`});
-    } finally {
-        await mongoose.disconnect();
-    }
+    } 
 }
 
 add = async (elem) => {
@@ -42,9 +41,7 @@ add = async (elem) => {
         return ({msg: `Agregado!`});
     } catch (error) {
         return ({code: 500, msg: `Error al agregar`});
-    }  finally {
-        await mongoose.disconnect();
-    }
+    } 
 }
 
 }

@@ -7,11 +7,11 @@ const schemaMensaje = new normalizr.schema.Entity('post', { author: schemaAuthor
 const schemaMensajes = new normalizr.schema.Entity('posts', { mensajes: [schemaMensaje] }, { idAttribute: 'id' })
 
 socket.on('from-server-messages', messages => {
-    let mensajesNsize = JSON.stringify(messages).length;
+    // let mensajesNsize = JSON.stringify(messages).length;
     let mensajesD = normalizr.denormalize(messages.result, schemaMensajes, messages.entities);
-    let mensajesDsize = JSON.stringify(mensajesD).length;
-    let compresion = parseInt((mensajesNsize * 100) / mensajesDsize);
-    document.querySelector('#compresion').innerHTML = `Compresión: ${compresion}%`;
+    // let mensajesDsize = JSON.stringify(mensajesD).length;
+    // let compresion = parseInt((mensajesNsize * 100) / mensajesDsize);
+    // document.querySelector('#compresion').innerHTML = `Compresión: ${compresion}%`;
     render(mensajesD.mensajes);
 });
 
@@ -63,3 +63,25 @@ function sendMessage() {
         alert('Por favor, complete correctamente los campos.')
     }  
 }
+
+
+// async function sendProduct() {
+//     const title = document.querySelector('#producto');
+//     const price = document.querySelector('#precio');
+//     const url = document.querySelector('#imagen');
+//     console.log(title.value, price.value, url.value)
+//     if (title.value != "" && price.value != "" && url.value != "") {
+//         const product = {
+//         producto: title.value,
+//         precio: price.value,
+//         foto: url.value
+//         }
+//     socket.emit('from-client-product', product);
+
+//     title.value = "";
+//     price.value = "";
+//     url.value = "";
+//     } else {
+//         alert('Por favor ingrese un producto.')
+//     }
+// }

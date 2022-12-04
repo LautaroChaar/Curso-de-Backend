@@ -3,12 +3,9 @@ import { createServer  } from 'http';
 import { Server } from 'socket.io';
 import {routerProductos} from './src/routes/productos.routes.js';
 import {routerCarrito} from './src/routes/carrito.routes.js';
-import { routerRandomProductos } from './src/routes/randomProducts.routes.js';
 import { routerMensajes, listarMensajesNormalizados, agregarmensaje } from './src/routes/mensajes.routes.js';
 import { routerAuth } from './src/routes/auth.routes.js';
 import { routerHome } from './src/routes/home.routes.js';
-import { routerInfo } from './src/routes/info.routes.js';
-import { routerRandoms } from './src/routes/randoms.routes.js';
 import connectMongo from 'connect-mongo';
 import session from "express-session";
 import passport from 'passport';
@@ -50,13 +47,9 @@ app.set('view engine', 'pug');
 
 app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito);
-app.use('/api/productos-test', routerRandomProductos);
 app.use('/api/mensajes', routerMensajes);
 app.use('/api/', routerAuth);
 app.use('/api/home', routerHome);
-app.use('/api/randoms', routerRandoms);
-app.use('/api/info', routerInfo);
-
 
 app.get('*', (req, res)=>{
     const {url, method } = req;
@@ -95,8 +88,8 @@ if (cluster.isPrimary && MODO == 'CLUSTER') {
     } 
 
     const server = httpServer.listen(PORT, () => {
-        logger.info(`Servidor escuchando ${PORT}`);
-        // en puerto http://localhost:${PORT} - PID WORKER ${process.pid}`
+        logger.info(`Servidor escuchando en puerto http://localhost:${PORT}/api - PID WORKER ${process.pid}`);
+        // `
     });
 
     server.on('error', err => logger.error(`error en server ${err}`));
@@ -114,3 +107,5 @@ if (cluster.isPrimary && MODO == 'CLUSTER') {
 
     });
 }
+
+

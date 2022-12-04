@@ -1,13 +1,13 @@
-div.mt-5.mb-5
+div.mt-5.mb-5(class="d-flex flex-column align-items-center")
     h3 Login
-    form#formLogin(method="POST" action="/api/login")
+    form#formLogin(method="POST" action="/api/login" style="min-width: 35%" class="mx-auto")
         div.form-group
             label(for="text") Email
-            input#username.form-control(type="email" name="username" aria-describedby="userComent" class="w-50" required)
+            input#username.form-control(type="email" name="username" aria-describedby="userComent" required)
             label(for="text") Contraseña
-            input#password.form-control(type="password" name="password" aria-describedby="userComent" class="w-50" required)
-        div.form-group
-            button.btn.btn-success.mt-3(type="submit") Enviar
+            input#password.form-control(type="password" name="password" aria-describedby="userComent" required)
+        div.form-group(class="d-flex justify-content-center")
+            button.btn.btn-success.mt-3(type="submit") Ingresar
     form(method="GET" action="/api/registro")
         div.form-group 
             button.btn.btn-success.mt-3(type="submit") Ir a Registro 
