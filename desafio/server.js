@@ -3,7 +3,8 @@ import { createServer  } from 'http';
 import { Server } from 'socket.io';
 import {routerProductos} from './src/routes/productos.routes.js';
 import {routerCarrito} from './src/routes/carrito.routes.js';
-import { routerMensajes, listarMensajesNormalizados, agregarmensaje } from './src/routes/mensajes.routes.js';
+import { routerMensajes } from './src/routes/mensajes.routes.js';
+import { agregarMensaje, listarMensajesNormalizados } from './src/controllers/mensajes.controller.js';
 import { routerAuth } from './src/routes/auth.routes.js';
 import { routerHome } from './src/routes/home.routes.js';
 import connectMongo from 'connect-mongo';
@@ -13,9 +14,7 @@ import minimist from 'minimist';
 import cluster from 'cluster';
 import os from 'os';
 import { logger } from './src/utils/configLogger.js';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { config } from './src/utils/config.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -23,14 +22,14 @@ const io = new Server(httpServer);
 
 
 const MongoStore = connectMongo.create({
-    mongoUrl: process.env.MONGO_URL,
+    mongoUrl: config.server.MONGO_URL,
     ttl: 600 
 })
 
 
 app.use(session({
     store: MongoStore,
-    secret: process.env.SECRET_KEY,
+    secret: config.server.SECRET_KEY,
     resave: true,
     saveUninitialized: true
 }))
@@ -101,7 +100,7 @@ if (cluster.isPrimary && MODO == 'CLUSTER') {
         io.sockets.emit('from-server-messages', await listarMensajesNormalizados());
 
         socket.on('from-client-messages', async messages => {
-            await agregarmensaje(messages);
+            await agregarMensaje(messages);
             io.sockets.emit('from-server-messages', await listarMensajesNormalizados())
         });
 
