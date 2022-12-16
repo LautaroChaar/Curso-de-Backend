@@ -1,10 +1,11 @@
 div 
     img(src=srcImg style="width: 60px; border-radius: 20px")
-    h1 #{name}
-    h5 Email: #{username} 
-    h5 Edad: #{age}
-    h5 Dirección: #{adress}
-    h5 Teléfono: #{phone}
+    h1 #{userInfo.nombreCompleto}
+    h5 Email: #{userInfo.email} 
+    h5 Edad: #{userInfo.edad}
+    h5 Cumpleaños: #{userInfo.aniversario}
+    h5 Dirección: #{userInfo.direccion}
+    h5 Teléfono: +#{userInfo.telefono}
 div 
     div.table-responsive
         if carrito.productos.length > 0

@@ -1,0 +1,290 @@
+[2022-12-15T15:01:19.760] [ERROR] default - Error: carritos validation failed: id: Path `id` is required.
+    at ValidationError.inspect (C:\backend\desafio\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (C:\backend\desafio\node_modules\log4js\lib\layouts.js:65:52)
+    at app (C:\backend\desafio\node_modules\log4js\lib\appenders\file.js:98:23)
+    at C:\backend\desafio\node_modules\log4js\lib\appenders\logLevelFilter.js:10:7
+    at C:\backend\desafio\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>) {
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\backend\desafio\node_modules\mongoose\lib\document.js:2877:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carritos validation failed'
+}
+[2022-12-15T15:31:01.763] [ERROR] default - Error: carritos validation failed: id: Path `id` is required.
+    at ValidationError.inspect (C:\backend\desafio\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (C:\backend\desafio\node_modules\log4js\lib\layouts.js:65:52)
+    at app (C:\backend\desafio\node_modules\log4js\lib\appenders\file.js:98:23)
+    at C:\backend\desafio\node_modules\log4js\lib\appenders\logLevelFilter.js:10:7
+    at C:\backend\desafio\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>) {
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\backend\desafio\node_modules\mongoose\lib\document.js:2877:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carritos validation failed'
+}
+[2022-12-15T15:31:51.783] [ERROR] default - Error: carritos validation failed: id: Path `id` is required.
+    at ValidationError.inspect (C:\backend\desafio\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (C:\backend\desafio\node_modules\log4js\lib\layouts.js:65:52)
+    at app (C:\backend\desafio\node_modules\log4js\lib\appenders\file.js:98:23)
+    at C:\backend\desafio\node_modules\log4js\lib\appenders\logLevelFilter.js:10:7
+    at C:\backend\desafio\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>) {
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\backend\desafio\node_modules\mongoose\lib\document.js:2877:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carritos validation failed'
+}
+[2022-12-15T15:32:13.890] [WARN] default - Ruta GET / no implementada
+[2022-12-15T15:32:14.084] [WARN] default - Ruta GET / no implementada
+[2022-12-15T15:32:19.099] [ERROR] default - Error: carritos validation failed: id: Path `id` is required.
+    at ValidationError.inspect (C:\backend\desafio\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (C:\backend\desafio\node_modules\log4js\lib\layouts.js:65:52)
+    at app (C:\backend\desafio\node_modules\log4js\lib\appenders\file.js:98:23)
+    at C:\backend\desafio\node_modules\log4js\lib\appenders\logLevelFilter.js:10:7
+    at C:\backend\desafio\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>) {
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\backend\desafio\node_modules\mongoose\lib\document.js:2877:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carritos validation failed'
+}
+[2022-12-15T15:32:26.257] [ERROR] default - Error: carritos validation failed: id: Path `id` is required.
+    at ValidationError.inspect (C:\backend\desafio\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (C:\backend\desafio\node_modules\log4js\lib\layouts.js:65:52)
+    at app (C:\backend\desafio\node_modules\log4js\lib\appenders\file.js:98:23)
+    at C:\backend\desafio\node_modules\log4js\lib\appenders\logLevelFilter.js:10:7
+    at C:\backend\desafio\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>) {
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\backend\desafio\node_modules\mongoose\lib\document.js:2877:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carritos validation failed'
+}
+[2022-12-15T15:37:41.837] [WARN] default - Ruta GET / no implementada
+[2022-12-15T15:37:42.001] [WARN] default - Ruta GET / no implementada
+[2022-12-16T12:50:54.770] [WARN] default - Ruta GET /favicon.ico no implementada
+[2022-12-16T13:23:47.798] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T13:24:29.906] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T13:25:20.040] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T13:26:01.629] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T13:28:03.413] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T13:28:30.991] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T13:34:10.247] [ERROR] default - ReferenceError: info is not defined
+    at registerNewUser (file:///C:/backend/desafio/src/controllers/auth.controller.js:113:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-12-16T15:07:13.955] [ERROR] default - CustomError {
+  codigo: 404,
+  descripcion: 'Get by id',
+  detalle: 'Elemento no encontrado.'
+}
+[2022-12-16T15:09:22.077] [WARN] default - Ruta GET /favicon.ico no implementada
+[2022-12-16T15:11:13.996] [WARN] default - Ruta GET /favicon.ico no implementada
+[2022-12-16T15:11:20.721] [WARN] default - Ruta GET /favicon.ico no implementada
+[2022-12-16T15:40:58.147] [ERROR] default - Error: Invalid login: 535 Authentication failed
+    at SMTPConnection._formatError (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:1542:34)
+    at SMTPConnection.<anonymous> (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (C:\backend\desafio\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2022-12-16T15:44:52.453] [ERROR] default - Error: carritos validation failed: id: Path `id` is required.
+    at ValidationError.inspect (C:\backend\desafio\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (C:\backend\desafio\node_modules\log4js\lib\layouts.js:65:52)
+    at app (C:\backend\desafio\node_modules\log4js\lib\appenders\file.js:98:23)
+    at C:\backend\desafio\node_modules\log4js\lib\appenders\logLevelFilter.js:10:7
+    at C:\backend\desafio\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>) {
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (C:\backend\desafio\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\backend\desafio\node_modules\mongoose\lib\document.js:2877:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carritos validation failed'
+}

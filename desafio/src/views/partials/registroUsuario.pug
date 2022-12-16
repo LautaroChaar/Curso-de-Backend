@@ -4,10 +4,12 @@ div.mt-5.mb-5(class="d-flex flex-column align-items-center")
         div.form-group
             label(for="text") Nombre
             input.form-control(type="text" name="name" aria-describedby="userComent"  required)
+            label(for="text") Apellido
+            input.form-control(type="text" name="lastname" aria-describedby="userComent"  required)
             label(for="text") Dirección
             input.form-control(type="text" name="adress" aria-describedby="userComent"  required)
-            label(for="text") Edad
-            input.form-control(type="number" name="age" aria-describedby="userComent"  min="1" required)
+            label(for="text") Fecha de nacimiento
+            input.form-control(type="date" name="dateOfBirth" aria-describedby="userComent"  min="1" required)
             label(for="text" style="display: block;") Teléfono
             input#phone.form-control(type="tel" name="phone" aria-describedby="userComent"  required)
             label(for="text" style="display: block;") Foto

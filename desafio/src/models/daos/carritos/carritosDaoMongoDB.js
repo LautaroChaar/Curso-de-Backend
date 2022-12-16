@@ -1,8 +1,8 @@
 import ContenedorMongoDB from "../../containers/contenedorMongoDB.js";
-import { logger } from "../../utils/configLogger.js";
-import { config } from "../../utils/config.js";
+import { logger } from "../../../utils/configLogger.js";
+import { config } from "../../../utils/config.js";
 import mongoose from 'mongoose';
-import { carritosModel } from '../../models/carritos.model.js';
+import { carritosModel } from '../../../models/carritos.model.js';
 
 class CarritosDaoMongoDB extends ContenedorMongoDB {
     constructor() {

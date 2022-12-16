@@ -1,50 +1,48 @@
-import mongoose from 'mongoose';
-import {config} from '../utils/config.js';
-import { logger } from '../utils/configLogger.js';
+import CustomError from '../../classes/CustomError.class.js';
+import MongoDBClient from '../../classes/MongoDBClient.class.js';
+import { logger } from '../../utils/configLogger.js';
 
 
 class ContenedorMongoDB {
     constructor(model) {
         this.model = model;
+        this.conn = MongoDBClient.getInstance();
     }
 
 
     getAll = async () => {
         try {
-            const strConn = config.atlas.strConn;
-            await mongoose.connect(strConn);
+            await this.conn.connect();
             return await this.model.find();
         } catch (error) {
             logger.error(error);
-            return ({code: 500, msg: `Error al completar la solicitud`});
+            throw new CustomError(500, 'Get all', 'Error al completar la solicitud.');
         } finally {
-            await mongoose.disconnect();
+            await this.conn.disconnect();
         }
     }
 
     getById = async (id) => {
         try {
-            const strConn = config.atlas.strConn;
-            await mongoose.connect(strConn);
+            await this.conn.connect();
             if (await this.model.find({id: id}) == false) {
-                return ({code: 404, msg: `No encontrado`});
+                throw new CustomError(404, 'Get by id', 'Elemento no encontrado.');
             } else {
                 let res = await this.model.find({id: id});
                 return res[0];
             }
         } catch (error) {
             logger.error(error);
-            return ({code: 500, msg: `Error al completar la solicitud`});
+            throw new CustomError(500, 'Get by id', 'Error al completar la solicitud.');
         } finally {
-            await mongoose.disconnect();
+            await this.conn.disconnect();
         }
     }
 
     add = async (elem) => {
         try {
             const timestamp = new Date().toLocaleString();
-            const strConn = config.atlas.strConn;
-            await mongoose.connect(strConn); 
+            await this.conn.connect(); 
             const objs = await this.model.find();
             let id;
             if (objs.length === 0) {
@@ -57,64 +55,61 @@ class ContenedorMongoDB {
             return ({msg: `Agregado!`});
         } catch (error) {
             logger.error(error);
-            return ({code: 500, msg: `Error al agregar`});
+            throw new CustomError(500, 'Add', 'Error al agregar elemento.');
         }  finally {
-            await mongoose.disconnect();
+            await this.conn.disconnect();
         }
     }
 
     update = async (elem) => {
         try {
-            const strConn = config.atlas.strConn;
-            await mongoose.connect(strConn);
+            await this.conn.connect();
             const id = Number(elem.id);
             if (await this.model.find({id: id}) == false) {
-                return ({code: 404, msg: `No encontrado`});
+                throw new CustomError(404, 'Update', 'Elemento no encontrado.');
             } else {
                 await this.model.updateOne({id: id}, {$set: elem})
                 return ({msg: `Actualizado`});
             }
         } catch (error) {
             logger.error(error);
-            return ({code: 500, msg: `Error al actualizar`});
+            throw new CustomError(500, 'Update', 'Error al actualizar elemento.');
         } finally {
-            await mongoose.disconnect();
+            await this.conn.disconnect();
         }
     }
 
     emptyCart = async (id) => {
         try {
-            const strConn = config.atlas.strConn;
-            await mongoose.connect(strConn);
+            await this.conn.connect();
             if (await this.model.find({id: id}) == false) {
-                return ({code: 404, msg: `No encontrado`});
+                throw new CustomError(404, 'EmptyCart', 'Carrito no encontrado.');
             } else {
                 await this.model.updateOne({id: id}, {$set: {productos: []}})
                 return ({msg: `Actualizado`});
             }
         } catch (error) {
             logger.error(error);
-            return ({code: 500, msg: `Error al actualizar`});
+            throw new CustomError(500, 'EmptyCart', 'Error al vaciar el carrito.');
         } finally {
-            await mongoose.disconnect();
+            await this.conn.disconnect();
         }
     }
 
     deleteById = async (id) => {
         try {
-            const strConn = config.atlas.strConn;
-            await mongoose.connect(strConn);
+            await this.conn.connect();
             if (await this.model.find({id: id}) == false) {
-                return ({code: 404, msg: `No encontrado`});
+                throw new CustomError(404, 'DeleteById', 'Elemento no encontrado.');
             } else {
                 await this.model.deleteOne({id: id});
                 return ({msg: `Eliminado con exito!`});
             }
         } catch (error) {
             logger.error(error);
-            return ({code: 500, msg: `Error al eliminar`});
+            throw new CustomError(500, 'DeleteById', 'Error al eliminar el elemento.');
         } finally {
-            await mongoose.disconnect();
+            await this.conn.disconnect();
         }
     }
 

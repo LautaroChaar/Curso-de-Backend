@@ -7,8 +7,8 @@ dotenv.config();
 log4js.configure({
     appenders: {
         console: {type: 'console'},
-        warnFile: { type: 'file', filename: './warn.log'},
-        errorFile: { type: 'file', filename: './error.log'},
+        warnFile: { type: 'file', filename: 'logs/warn.log'},
+        errorFile: { type: 'file', filename: 'logs/error.log'},
         
         loggerConsole: { type: 'logLevelFilter', appender: 'console', level: 'info'},
         loggerWarn: { type: 'logLevelFilter', appender: 'warnFile', level: 'warn'},

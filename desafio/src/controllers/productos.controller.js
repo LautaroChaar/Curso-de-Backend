@@ -1,16 +1,33 @@
 import { logger } from '../utils/configLogger.js';
 import { productosDao as apiProductos } from '../service/index.js';
+import ProductoDTO from '../models/dtos/productos/productosDtoMongoDB.js';
+import Cotizador from '../classes/Cotizador.class.js';
+
+const cot = new Cotizador();
 
 export async function getAllProducts(req, res) {
     const { url, method } = req;
     logger.info(`Ruta ${method} /api/productos${url}`);
-    res.json((await apiProductos.getAll()));
+    const docs  = await apiProductos.getAll();
+    const docsDto = docs.map(producto => {
+        const cotizaciones = {
+            precioDolar: cot.getPrice(producto.precio, 'USD'),
+            precioBTC: cot.getPrice(producto.precio, 'BTC')
+        }
+        return new ProductoDTO(producto, cotizaciones);
+    })
+    res.json((docsDto));
 }; 
 
 export async function getProductById(req, res) {
     const {url, method } = req;
     logger.info(`Ruta ${method} /api/productos${url}`);
-    res.json((await apiProductos.getById(req.params.id)));
+    const producto = await apiProductos.getById(req.params.id);
+    const cotizaciones = {
+        precioDolar: cot.getPrice(producto.precio, 'USD'),
+        precioBTC: cot.getPrice(producto.precio, 'BTC')
+    }
+    return res.json( new ProductoDTO(producto, cotizaciones)) ;
 }; 
 
 export async function addProduct(req, res) {

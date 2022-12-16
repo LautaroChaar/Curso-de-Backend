@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import {config} from '../../utils/config.js';
+import {config} from '../../../utils/config.js';
 import ContenedorMongoDB from "../../containers/contenedorMongoDB.js";
-import { usuariosModel } from "../../models/usuariosModel.js";
+import { usuariosModel } from "../../../models/usuariosModel.js";
 
 
 class UsuariosDaoMongoDB extends ContenedorMongoDB {

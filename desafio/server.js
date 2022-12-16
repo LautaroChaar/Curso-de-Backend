@@ -41,7 +41,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-app.set('views', './views');
+app.set('views', './src/views');
 app.set('view engine', 'pug');
 
 app.use('/api/productos', routerProductos);
